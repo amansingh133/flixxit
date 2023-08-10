@@ -1,0 +1,200 @@
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.page-layout {
+  user-select: none;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.5) 0,
+
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("../../../../public/images/background-images/background-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logo-container {
+  padding-left: 20px;
+}
+
+.form-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.form-content {
+  background: rgba(0, 0, 0, 0.68);
+  padding: 15px 68px 40px;
+  display: flex;
+  flex-direction: column;
+  margin: 1vh 0;
+  box-sizing: border-box;
+}
+
+.error {
+  color: #e87c03;
+  margin: 0 6px 6px 6px;
+  padding: 0 3px 6px 3px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-content > .title-container > h1 {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 28px;
+  padding: 0;
+  color: white;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-container > .password-modal {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 5px;
+}
+
+.password-modal-info:hover {
+  cursor: help;
+  transform: scale(1.08);
+  transition: transform 0.3s ease-in-out;
+}
+
+.form-content > input {
+  outline-width: 0;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: 0;
+  padding: 5px 15px;
+  background: #333;
+  color: #fff;
+}
+
+.submit-button {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1em;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  padding: 16px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #e50914;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.form-content > h4 {
+  text-align: left;
+  margin-top: 14px;
+  margin-bottom: 0;
+  color: #fff;
+}
+.form-content > h4 > span {
+  color: gray;
+}
+
+.form-content > h4 > a[href="/signup"] {
+  color: white;
+  text-decoration: none;
+}
+
+.form-content > h4 > a[href="/signup"]:hover {
+  color: #e50914;
+  text-decoration: underline;
+}
+
+.form-content > h4 > a[href="/login"] {
+  color: white;
+  text-decoration: none;
+}
+
+.form-content > h4 > a[href="/login"]:hover {
+  color: #e50914;
+  text-decoration: underline;
+}
+
+.form-content > h4 > a[href="/reset-password"] {
+  color: white;
+  text-decoration: none;
+}
+
+.form-content > h4 > a[href="/reset-password"]:hover {
+  color: #e50914;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+  .page-layout {
+    background-color: #000;
+    background-image: none;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  .form-wrapper {
+    margin: 0;
+  }
+
+  .form-content {
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  .logo {
+    margin-top: 0;
+  }
+
+  .form-content > input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .page-layout {
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  .form-wrapper {
+    max-width: 450px;
+  }
+}

@@ -1,0 +1,32 @@
+.menuItem-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  opacity: 0.8;
+}
+
+.menuItem-container:hover {
+  opacity: 1;
+}
+
+.menu-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.menu-link {
+  padding: 5px 10px;
+  margin: 2px;
+  font-size: 1rem;
+  color: #fff;
+  width: 20%;
+  background-color: #e50914;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+}
