@@ -18,9 +18,11 @@
 }
 
 .banner-title {
+  display: inline-block;
   font-size: 3rem;
   font-weight: 800;
   padding-bottom: 0.3rem;
+  cursor: pointer;
 }
 
 .banner-description {
@@ -59,7 +61,7 @@
 
 .banner-button:hover {
   color: #000;
-  background-color: #e6e6e6;
+  background-color: rgba(229, 9, 20, 0.5);
   transition: all 0.3s;
 }
 

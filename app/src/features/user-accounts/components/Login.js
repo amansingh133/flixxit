@@ -61,6 +61,7 @@ const Login = () => {
             value={formData.email}
             onChange={handleInputChange}
             required
+            autoComplete="off"
           />
 
           <input
@@ -70,6 +71,7 @@ const Login = () => {
             value={formData.password}
             onChange={handleInputChange}
             required
+            autoComplete="off"
           />
 
           <button

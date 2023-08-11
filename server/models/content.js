@@ -5,6 +5,7 @@ const contentSchema = new mongoose.Schema({
   synopsis: { type: String, required: true },
   genres: [{ type: String, required: true }],
   category: { type: String, required: true },
+  background_path: { type: String, required: true },
   rating: {
     upvotes: { type: Number, default: 0 },
     downvotes: { type: Number, default: 0 },

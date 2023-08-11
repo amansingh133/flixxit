@@ -4,6 +4,7 @@ import userRoutes from "./user.js";
 import contentRoutes from "./content.js";
 import watchlistRoutes from "./watchlist.js";
 import subscriptionRoutes from "./subscription.js";
+import catchAll from "./catch-all.js";
 
 const router = express.Router();
 

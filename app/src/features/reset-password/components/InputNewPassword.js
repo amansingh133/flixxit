@@ -54,6 +54,7 @@ const InputNewPassword = () => {
           placeholder="Password"
           value={formData.newPassword}
           onChange={handleInput}
+          autoComplete="off"
         />
 
         <input
@@ -62,6 +63,7 @@ const InputNewPassword = () => {
           placeholder="Confirm Password"
           value={formData.confirmNewPassword}
           onChange={handleInput}
+          autoComplete="off"
         />
         <PasswordModal />
         {!passwordMatch && (

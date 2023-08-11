@@ -33,6 +33,7 @@ const InputOtp = () => {
           name="otp"
           placeholder="Enter 6 digit OTP"
           value={otp}
+          autoComplete="off"
           onChange={(e) => {
             setErr("");
             setMessage("");

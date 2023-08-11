@@ -19,6 +19,7 @@ export const getOneContent = async (req, res) => {
 export const getAllContent = async (req, res) => {
   try {
     const content = await Content.find();
+
     res.setHeader("Content-Type", "application/json");
     res.json(content);
   } catch (error) {

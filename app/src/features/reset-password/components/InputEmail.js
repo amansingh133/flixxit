@@ -38,6 +38,7 @@ const InputEmail = () => {
           id="email"
           name="email"
           placeholder="Enter Registered Email"
+          autoComplete="off"
           value={email}
           onChange={(e) => {
             setErr("");

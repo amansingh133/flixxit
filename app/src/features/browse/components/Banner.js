@@ -1,5 +1,5 @@
 import "../styles/banner.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { storeContent } from "../slices/content-slice";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -17,7 +17,6 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const Banner = () => {
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
-  const sliderRef = useRef(null);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -57,10 +56,10 @@ const Banner = () => {
           infinite
           isIntrinsicHeight={true}
         >
-          <Slider id="mySlider" ref={sliderRef} autoFocus>
+          <Slider>
             {content.map((item, index) => (
               <Slide key={index} index={index}>
-                <BannerItem item={item} tabIndex={-1} />
+                <BannerItem item={item} />
               </Slide>
             ))}
           </Slider>

@@ -8,6 +8,7 @@ import { BrowsePage } from "./features/browse";
 import { Profile } from "./features/user-profile/";
 import ErrorPage from "./pages/error/ErrorPage";
 import ResetPassword from "./features/reset-password";
+import { TitlePage } from "./features/title-view";
 
 import "./App.css";
 
@@ -21,6 +22,7 @@ const App = () => {
             <Route element={<RequireAuth />}>
               <Route index element={<BrowsePage />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="title/:id" element={<TitlePage />} />
             </Route>
           </Route>
 

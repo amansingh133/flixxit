@@ -82,6 +82,7 @@ const Signup = () => {
             value={formData.name}
             onChange={handleInput}
             required
+            autoComplete="off"
           />
           <input
             type="email"
@@ -90,6 +91,7 @@ const Signup = () => {
             value={formData.email}
             onChange={handleInput}
             required
+            autoComplete="off"
           />
           <input
             type="password"
@@ -98,6 +100,7 @@ const Signup = () => {
             value={formData.password}
             onChange={handleInput}
             required
+            autoComplete="off"
           />
           <input
             type="password"
@@ -106,7 +109,8 @@ const Signup = () => {
             value={formData.confirmPassword}
             onChange={handleInput}
             required
-          />{" "}
+            autoComplete="off"
+          />
           <button
             type="submit"
             className="submit-button"
@@ -115,7 +119,7 @@ const Signup = () => {
             Signup
           </button>
           <h4>
-            <span>Already have an account?</span>
+            <span>Already have an account? </span>
             <Link to="/login">Login here</Link>
           </h4>
         </form>
