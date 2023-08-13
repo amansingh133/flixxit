@@ -39,7 +39,7 @@ router.get(
 
 router.post(
   "/reset-password-request",
-  // passwordRequestLimiter,
+  passwordRequestLimiter,
   resetPasswordRequest
 );
 

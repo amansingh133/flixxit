@@ -9,9 +9,9 @@ const useRefreshToken = () => {
   const refresh = async () => {
     try {
       const response = await axios.get("/user/refreshToken");
-      const accessToken = response.data.accessToken;
+      const { accessToken, userData } = response.data;
       const user = jwtDecode(accessToken);
-      dispatch(setUserAndToken({ user, accessToken }));
+      dispatch(setUserAndToken({ user, accessToken, userData }));
       return accessToken;
     } catch (error) {
       console.log(error);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/TitleView.css";
 import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { AddToWatchlist } from "../../watchlist";
 
 const TitleView = () => {
   const { id } = useParams();
@@ -20,27 +21,25 @@ const TitleView = () => {
   }
 
   return (
-    <div className="title-view-container">
-      <div className="title-image-container">
-        <img
-          src={item.background_path}
-          alt={item.title}
-          className="title-image"
-        />
-      </div>
-      <div className="title-details">
-        <h2>{item.title}</h2>
-        <p>{item.synopsis}</p>
-        <div className="rating">
-          <p>
-            Rating: {item.rating.upvotes} Upvotes, {item.rating.downvotes}{" "}
-            Downvotes
-          </p>
+    <header
+      className="title-view-container"
+      style={{
+        backgroundImage: `url(${item.background_path})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
+    >
+      <div className="title-view-contents">
+        <p className="title-view-category">{item.category}</p>
+        <h1 className="title-view-title">{item.title}</h1>
+        <p className="title-view-synopsis">{item.synopsis}</p>
+        <div className="title-view-buttons">
+          <button className="title-view-button">Play</button>
+          <AddToWatchlist classname="banner-button" content={item} />
         </div>
-        <p>Category: {item.category}</p>
-        <p>Genres: {item.genres.join(", ")}</p>
+        <p className="title-view-genre">{item.genres.join(" | ")}</p>
       </div>
-    </div>
+    </header>
   );
 };
 

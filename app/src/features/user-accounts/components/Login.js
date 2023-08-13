@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import axios from "../../../api/axios";
+import { callApi } from "../../../api/callApi";
 import { setUserAndToken } from "../slices/user-slice";
-import { login } from "../api/user-api";
 import "../styles/form.css";
 import Logo from "../../../components/logo/Logo";
 
@@ -29,9 +30,13 @@ const Login = () => {
     }
 
     try {
-      const { accessToken } = await login(formData.email, formData.password);
+      const response = await callApi(axios, "/user/login", "post", {
+        email: formData.email,
+        password: formData.password,
+      });
+      const { accessToken, userData } = response.data;
       const user = jwtDecode(accessToken);
-      dispatch(setUserAndToken({ user, accessToken }));
+      dispatch(setUserAndToken({ user, accessToken, userData }));
       setFormData({ email: "", password: "" });
       setError("");
       navigate("/", { replace: true });

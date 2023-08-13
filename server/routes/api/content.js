@@ -1,7 +1,10 @@
 import express from "express";
 import passport from "../../config/passport.js";
 
-import { logContentConsumption } from "../../controllers/content/log-consumption.js";
+import {
+  getConsumptionHistory,
+  logContentConsumption,
+} from "../../controllers/content/consumption.js";
 import { getContentSuggestions } from "../../controllers/content/get-suggestions.js";
 import {
   updateUserPreferences,
@@ -26,11 +29,13 @@ router.get(
   getContentSuggestions
 );
 
-router.post(
-  "/consumption",
-  passport.authenticate("jwt", { session: false }),
-  logContentConsumption
-);
+router
+  .route("/consumption")
+  .get(passport.authenticate("jwt", { session: false }), getConsumptionHistory)
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    logContentConsumption
+  );
 
 router
   .route("/preferences")

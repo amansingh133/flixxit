@@ -1,12 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { AddToWatchlist } from "../../watchlist";
 
 const BannerItem = ({ item }) => {
   const navigate = useNavigate();
-
-  const truncate = (string, n) => {
-    return string?.length > n ? string.substr(0, n - 1) + "..." : string;
-  };
 
   const handleTitleClick = (item) => {
     navigate(`/title/${item._id}`);
@@ -16,7 +13,6 @@ const BannerItem = ({ item }) => {
     <header
       className="banner"
       style={{
-        objectFit: "contain",
         backgroundImage: `url(${item.background_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
@@ -28,11 +24,8 @@ const BannerItem = ({ item }) => {
         </h1>
         <div className="banner-buttons">
           <button className="banner-button">Play</button>
-          <button className="banner-button">Add to Watchlist</button>
+          <AddToWatchlist classname="banner-button" content={item} />
         </div>
-        <h1 className="banner-description">
-          {truncate(`${item.synopsis}`, 150)}
-        </h1>
       </div>
       <div className="banner--fadebottom" />
     </header>

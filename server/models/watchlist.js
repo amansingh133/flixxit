@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 const watchlistSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   items: [
     {
+      _id: false,
       content: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Content",

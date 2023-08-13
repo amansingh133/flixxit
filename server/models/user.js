@@ -19,12 +19,22 @@ const userSchema = new Schema({
     type: String,
     default: null,
   },
-  preferences: { type: Schema.Types.ObjectId, ref: "Preferences" },
-  consumptionHistory: [{ type: Schema.Types.ObjectId, ref: "Consumption" }],
+  consumption: {
+    type: Schema.Types.ObjectId,
+    ref: "Consumption",
+  },
+  preferences: {
+    type: Schema.Types.ObjectId,
+    ref: "Preference",
+  },
+  watchlist: {
+    type: Schema.Types.ObjectId,
+    ref: "Watchlist",
+  },
   accountDetails: {
     creationDate: { type: Date, default: Date.now },
     isLoggedInCurrently: { type: Boolean, default: false },
-    lastLoggedIn: { type: Date, default: Date.now },
+    lastLoggedIn: { type: Date, default: null },
     subscription: {
       isSubscribed: { type: Boolean, default: false },
       subscriptionType: { type: String, default: "Yearly" },

@@ -1,15 +1,13 @@
 .banner-container {
   position: relative;
 }
-#mySlider:focus {
-  outline: none;
-}
 
 .banner {
   position: relative;
   object-fit: contain;
   color: white;
   height: 480px;
+  mix-blend-mode: difference;
 }
 
 .banner-contents {
@@ -25,17 +23,8 @@
   cursor: pointer;
 }
 
-.banner-description {
-  width: 45rem;
-  line-height: 1.3rem;
-  padding-top: 2rem;
-  font-size: 0.8rem;
-  max-width: 360px;
-  height: 40px;
-}
-
 .banner--fadebottom {
-  height: 7rem;
+  height: 10rem;
   background-image: linear-gradient(
     180deg,
     transparent,
@@ -46,6 +35,7 @@
 
 .banner-button {
   cursor: pointer;
+  text-decoration: none;
   color: #fff;
   outline: none;
   border: none;
@@ -57,11 +47,12 @@
   padding-top: 0.5rem;
   background-color: rgba(51, 51, 51, 0.5);
   padding-bottom: 0.5rem;
+  font-size: 18px;
 }
 
 .banner-button:hover {
   color: #000;
-  background-color: rgba(229, 9, 20, 0.5);
+  background-color: rgba(225, 225, 225, 0.5);
   transition: all 0.3s;
 }
 

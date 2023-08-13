@@ -1,49 +1,73 @@
 import Watchlist from "../../models/watchlist.js";
 
 export const addToWatchList = async (req, res) => {
-  const { userId, contentId } = req.body;
+  const { userId, contentId } = req.params;
 
   try {
-    const watchlist = await Watchlist.findOne({ user: userId });
+    if (!userId || !contentId) {
+      return res
+        .status(400)
+        .json({ message: "Both userId and contentId are required." });
+    }
+
+    const watchlist = await Watchlist.findOne({ userId });
 
     if (!watchlist) {
-      const newWatchList = new Watchlist({
-        user: userId,
-        items: [{ content: contentId }],
-      });
-      await newWatchList.save();
-    } else {
-      watchlist.items.push({ content: contentId });
-      await watchlist.save();
+      await Watchlist.create({ userId, items: [{ content: contentId }] });
+      return res.status(200).json({ message: "Added to watchlist." });
     }
-    res
-      .status(200)
-      .json({ message: "Content added to watchlist successfully" });
+
+    const existingItem = watchlist.items.find((item) =>
+      item.content.equals(contentId)
+    );
+
+    if (existingItem) {
+      return res.status(201).json({ message: "Already added to watchlist." });
+    }
+
+    watchlist.items.push({ content: contentId });
+    await watchlist.save();
+
+    return res.status(200).json({ message: "Added to watchlist." });
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error." });
   }
 };
 
 export const removeFromWatchList = async (req, res) => {
-  const { userId, contentId } = req.body;
+  const { userId, contentId } = req.params;
 
   try {
-    const watchlist = await Watchlist.findOne({ user: userId });
-
-    if (!watchlist) {
-      return res.status(404).json({ error: "Watchlist not found" });
+    if (!userId || !contentId) {
+      return res
+        .status(400)
+        .json({ message: "Both userId and contentId are required." });
     }
 
-    watchlist.items = watchlist.items.filter(
-      (item) => item.content.toString() !== contentId
+    const watchlist = await Watchlist.findOne({ userId });
+
+    if (!watchlist) {
+      return res.status(404).json({ message: "Watchlist not found." });
+    }
+
+    const itemIndex = watchlist.items.findIndex((item) =>
+      item.content.equals(contentId)
     );
+
+    if (itemIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: "Item not found in the watchlist." });
+    }
+
+    watchlist.items.splice(itemIndex, 1);
     await watchlist.save();
 
-    res
-      .status(200)
-      .json({ message: "Content removed from watchlist successfully" });
+    return res.status(200).json({ message: "Item removed from watchlist." });
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error." });
   }
 };
 
@@ -51,17 +75,26 @@ export const getWatchList = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const watchlist = await Watchlist.findOne({
-      user: userId,
-    }).populate("items.content");
-
-    if (!watchlist) {
-      return res.status(404).json({ error: "Watchlist not found" });
+    if (!userId) {
+      return res.status(400).json({ message: "userId is required." });
     }
 
-    res.status(200).json(watchlist.items);
+    const watchlist = await Watchlist.findOne({ userId }).populate(
+      "items.content"
+    );
+
+    if (!watchlist) {
+      return res.status(404).json({ message: "Watchlist not found." });
+    }
+
+    const items = watchlist.items;
+
+    items.sort((a, b) => b.addedAt - a.addedAt);
+
+    return res.status(200).json({ items });
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error." });
   }
 };
 
@@ -69,32 +102,67 @@ export const markContentAsWatched = async (req, res) => {
   const { userId, contentId } = req.params;
 
   try {
-    const watchlist = await Watchlist.findOne({ user: userId });
+    if (!userId || !contentId) {
+      return res
+        .status(400)
+        .json({ message: "Both userId and contentId are required." });
+    }
+
+    const watchlist = await Watchlist.findOne({ userId });
 
     if (!watchlist) {
-      return res.status(404).json({ error: "Watchlist not found" });
+      return res.status(404).json({ message: "Watchlist not found." });
     }
 
-    const contentIndex = watchlist.items.findIndex(
-      (item) => item.content.toString() === contentId
-    );
+    const item = watchlist.items.find((item) => item.content.equals(contentId));
 
-    if (contentIndex === -1) {
-      return res.status(404).json({ error: "Content not found in watchlist" });
+    if (!item) {
+      return res
+        .status(404)
+        .json({ message: "Item not found in the watchlist." });
     }
 
-    watchlist.items[contentIndex].watched = true;
+    item.watched = !item.watched;
     await watchlist.save();
 
-    if (watchlist.items[contentIndex].watched) {
-      watchlist.items.splice(contentIndex, 1);
-      await watchlist.save();
+    return res
+      .status(200)
+      .json({ status: item.watched, message: "Content marked as watched." });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+export const checkContentInWatchlist = async (req, res) => {
+  const { userId, contentId } = req.params;
+
+  try {
+    if (!userId || !contentId) {
+      return res
+        .status(400)
+        .json({ message: "Both userId and contentId are required." });
     }
 
-    res.status(200).json({
-      message: "Content marked as watched and removed from watchlist",
-    });
+    const watchlist = await Watchlist.findOne({ userId });
+
+    if (!watchlist) {
+      return res.status(404).json({ message: "Watchlist not found." });
+    }
+
+    const item = watchlist.items.find((item) => item.content.equals(contentId));
+
+    if (!item) {
+      return res
+        .status(200)
+        .json({ present: false, message: "Item not found in the watchlist." });
+    }
+
+    return res
+      .status(200)
+      .json({ present: true, message: "Item found in the watchlist." });
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error." });
   }
 };

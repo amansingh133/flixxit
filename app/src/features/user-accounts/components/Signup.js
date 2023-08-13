@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signup } from "../api/user-api";
+import axios from "../../../api/axios";
+import { callApi } from "../../../api/callApi";
 import Logo from "../../../components/logo/Logo";
 import PasswordModal from "../../../components/modal/PasswordModal";
 import "../styles/form.css";
@@ -16,13 +17,13 @@ const Signup = () => {
   });
 
   const [passwordMatch, setPasswordMatch] = useState(true);
-  const [err, setErr] = useState("");
+  const [err, setErr] = useState([]);
 
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   const handleInput = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErr("");
+    setErr([]);
     setPasswordMatch(true);
   };
 
@@ -35,24 +36,28 @@ const Signup = () => {
     }
 
     if (!emailRegex.test(formData.email)) {
-      setErr("Invalid email address");
+      setErr(["Invalid email address"]);
       return;
     }
 
     try {
-      const response = await signup(
-        formData.name,
-        formData.email,
-        formData.password
-      );
+      const response = await callApi(axios, "/user/signup", "post", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
 
       if (response.status === 200) {
         navigate("/login", { replace: true });
-        setErr("");
+        setErr([]);
       }
     } catch (error) {
       console.log(error);
-      setErr(error.response.data.error || "An error occurred during signup.");
+      if (error.response && error.response.data && error.response.data.errors) {
+        setErr(error.response.data.errors);
+      } else {
+        setErr(["An error occurred during signup."]);
+      }
     }
   };
 
@@ -74,7 +79,15 @@ const Signup = () => {
             <PasswordModal />
           </div>
           {!passwordMatch && <p className="error">Passwords do not match</p>}
-          {err && <p className="error">{err}</p>}
+          {err.length > 0 && (
+            <div>
+              {err.map((error, index) => (
+                <p key={index} className="error">
+                  {error.msg}
+                </p>
+              ))}
+            </div>
+          )}
           <input
             type="text"
             name="name"

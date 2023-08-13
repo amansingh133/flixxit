@@ -16,7 +16,22 @@ export const refreshAccessToken = async (req, res) => {
     let user;
 
     try {
-      user = await User.findOne({ _id: decoded.sub });
+      user = await User.findOne({ _id: decoded.sub })
+        .populate({
+          path: "consumption",
+          populate: {
+            path: "items.content",
+            select: "_id",
+          },
+        })
+        .populate("preferences")
+        .populate({
+          path: "watchlist",
+          populate: {
+            path: "items.content",
+            select: "_id",
+          },
+        });
     } catch (err) {
       return res.status(403).json({ message: "Error finding user" });
     }
@@ -30,9 +45,17 @@ export const refreshAccessToken = async (req, res) => {
       process.env.tokenExpirationDuration
     );
 
+    const userData = {
+      consumption: user.consumption,
+      preferences: user.preferences,
+      watchlist: user.watchlist,
+      accountDetails: user.accountDetails,
+    };
+
     res.status(200).json({
       message: "New access token generated",
       accessToken: newAccessToken,
+      userData,
     });
   } catch (err) {
     if (err.name === "TokenExpiredError") {

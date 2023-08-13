@@ -5,7 +5,22 @@ export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email })
+      .populate({
+        path: "consumption",
+        populate: {
+          path: "items.content",
+          select: "_id",
+        },
+      })
+      .populate("preferences")
+      .populate({
+        path: "watchlist",
+        populate: {
+          path: "items.content",
+          select: "_id",
+        },
+      });
 
     if (!user) {
       return res.status(404).json({
@@ -50,7 +65,14 @@ export const loginUser = async (req, res) => {
 
     res.cookie("refreshToken", refreshToken, cookieOptions);
 
-    return res.status(200).json({ accessToken });
+    const userData = {
+      consumption: user.consumption,
+      preferences: user.preferences,
+      watchlist: user.watchlist,
+      accountDetails: user.accountDetails,
+    };
+
+    return res.status(200).json({ accessToken, userData });
   } catch (error) {
     return res.status(500).json({ error: error });
   }

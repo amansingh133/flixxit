@@ -2,6 +2,7 @@ import "../styles/banner.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { storeContent } from "../slices/content-slice";
+import { callApi } from "../../../api/callApi";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import BannerItem from "./BannerItem";
 import {
@@ -21,17 +22,12 @@ const Banner = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosPrivate.get("/content");
-        dispatch(storeContent(response.data));
-      } catch (error) {
-        console.log("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
+    callApi(axiosPrivate, "/content", "get")
+      .then((res) => {
+        dispatch(storeContent(res.data));
+      })
+      .catch((error) => console.error("Error fetching data:", error))
+      .finally(() => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
