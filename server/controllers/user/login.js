@@ -35,6 +35,8 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ error: "Invalid password" });
     }
 
+    const isFirstLogin = !user.accountDetails.lastLoggedIn;
+
     await user.updateLoggedIn();
 
     const payload = {
@@ -65,14 +67,7 @@ export const loginUser = async (req, res) => {
 
     res.cookie("refreshToken", refreshToken, cookieOptions);
 
-    const userData = {
-      consumption: user.consumption,
-      preferences: user.preferences,
-      watchlist: user.watchlist,
-      accountDetails: user.accountDetails,
-    };
-
-    return res.status(200).json({ accessToken, userData });
+    return res.status(200).json({ accessToken, isFirstLogin });
   } catch (error) {
     return res.status(500).json({ error: error });
   }

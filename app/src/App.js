@@ -10,6 +10,8 @@ import ErrorPage from "./pages/error/ErrorPage";
 import ResetPassword from "./features/reset-password";
 import { TitlePage } from "./features/title-view";
 import { WatchlistPage } from "./features/watchlist";
+import { Preferences } from "./features/preferences";
+import { VideoPlayerWrapper } from "./features/video-player";
 
 import "./App.css";
 
@@ -25,6 +27,8 @@ const App = () => {
               <Route path="profile" element={<Profile />} />
               <Route path="title/:id" element={<TitlePage />} />
               <Route path="watchlist" element={<WatchlistPage />} />
+              <Route path="preferences" element={<Preferences />} />
+              <Route path="video" element={<VideoPlayerWrapper />} />
             </Route>
           </Route>
 

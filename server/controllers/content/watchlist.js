@@ -84,7 +84,7 @@ export const getWatchList = async (req, res) => {
     );
 
     if (!watchlist) {
-      return res.status(404).json({ message: "Watchlist not found." });
+      return res.status(200).json({ message: "Watchlist not found." });
     }
 
     const items = watchlist.items;
@@ -147,7 +147,7 @@ export const checkContentInWatchlist = async (req, res) => {
     const watchlist = await Watchlist.findOne({ userId });
 
     if (!watchlist) {
-      return res.status(404).json({ message: "Watchlist not found." });
+      return res.status(200).json({ message: "Watchlist not found." });
     }
 
     const item = watchlist.items.find((item) => item.content.equals(contentId));

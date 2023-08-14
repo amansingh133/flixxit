@@ -26,7 +26,6 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  height: 100%;
 }
 
 .welcome-navbar {
@@ -43,6 +42,7 @@
 }
 
 .mainContent {
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

@@ -1,14 +1,17 @@
+.title-page-container {
+  height: 100vh;
+}
+
 .title-view-container {
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   height: 100vh;
   display: flex;
-  align-items: center;
   mix-blend-mode: difference;
 }
 
 .title-view-contents {
-  margin-top: 65px;
+  margin-top: 100px;
   margin-left: 30px;
   flex: 1;
 }
@@ -19,19 +22,19 @@
 
 .title-view-title {
   display: inline-block;
-  font-size: 3rem;
+  font-size: 4.7vw;
   font-weight: 800;
   padding-bottom: 0.3rem;
 }
 
 .title-view-synopsis {
   width: 60%;
-  line-height: 1.3rem;
+  font-size: 2vw;
 }
 
 .title-view-genre {
   margin: 30px 0 0 0;
-  font-size: 1.3rem;
+  font-size: 1.5vw;
 }
 
 .title-view-buttons {
@@ -52,6 +55,7 @@
   padding-top: 0.5rem;
   background-color: rgba(51, 51, 51, 0.5);
   padding-bottom: 0.5rem;
+  text-decoration: none;
 }
 
 .title-view-button:hover {
@@ -61,12 +65,17 @@
 }
 
 @media (max-width: 768px) {
-  /* .title-view-container {
+  .title-view-buttons {
+    display: flex;
     flex-direction: column;
+    width: 30%;
   }
 
-  .title-image-container,
-  .title-details {
-    max-width: 100%;
-  } */
+  .title-view-button {
+    margin-top: 0.5rem;
+  }
+
+  .title-view-synopsis {
+    width: 100%;
+  }
 }

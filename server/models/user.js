@@ -71,9 +71,16 @@ userSchema.methods.checkPassword = async function (password) {
 
 userSchema.methods.updateLoggedIn = async function () {
   try {
-    this.accountDetails.isLoggedInCurrently = true;
-    this.accountDetails.lastLoggedIn = new Date();
-    await this.save();
+    if (!this.accountDetails.lastLoggedIn) {
+      // This is the first login
+      this.accountDetails.lastLoggedIn = new Date();
+      this.accountDetails.isLoggedInCurrently = true;
+      await this.save();
+    } else {
+      this.accountDetails.lastLoggedIn = new Date();
+      this.accountDetails.isLoggedInCurrently = true;
+      await this.save();
+    }
   } catch (error) {
     console.error("Error updating logged in status:", error);
     throw error;

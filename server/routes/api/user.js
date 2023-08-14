@@ -16,6 +16,10 @@ import { validateOtp } from "../../validations/validate-otp.js";
 import { passwordRequestLimiter } from "../../utils/protect-route.js";
 import { refreshAccessToken } from "../../validations/refresh-token.js";
 import { getProfile } from "../../controllers/user/get-profile.js";
+import {
+  updateUserPreferences,
+  getUserPreferences,
+} from "../../controllers/user/preferences.js";
 
 const router = express.Router();
 
@@ -30,6 +34,11 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   getProfile
 );
+
+router
+  .route("/preferences")
+  .get(passport.authenticate("jwt", { session: false }), getUserPreferences)
+  .put(passport.authenticate("jwt", { session: false }), updateUserPreferences);
 
 router.get(
   "/logout",

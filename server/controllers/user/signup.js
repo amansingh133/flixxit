@@ -21,7 +21,6 @@ const signUpUser = async (req, res) => {
       accountAccessDetails: {
         creationDate: Date.now(),
         isLoggedInCurrently: false,
-        lastLoggedIn: Date.now(),
         isSubscribed: {
           subscription: false,
           paymentDate: null,

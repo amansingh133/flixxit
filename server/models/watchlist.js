@@ -8,7 +8,6 @@ const watchlistSchema = new mongoose.Schema({
       content: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Content",
-        required: true,
       },
       addedAt: { type: Date, default: Date.now },
       watched: { type: Boolean, default: false },

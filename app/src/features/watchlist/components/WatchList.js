@@ -17,7 +17,6 @@ const WatchList = () => {
   useEffect(() => {
     callApi(axiosPrivate, `/watchlist/${userId}`, "get")
       .then((res) => {
-        console.log(res.data.items);
         dispatch(setWatchlist(res.data.items));
       })
       .catch((err) => console.error("Error fetching watchlist:", err))

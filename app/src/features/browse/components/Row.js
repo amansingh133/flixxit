@@ -27,7 +27,7 @@ const Row = ({ title, fetchUrl }) => {
       setVisibleSlides(4);
     } else if (window.innerWidth >= 576) {
       setVisibleSlides(3);
-    } else if (window.innerWidth >= 343) {
+    } else if (window.innerWidth >= 400) {
       setVisibleSlides(2);
     } else {
       setVisibleSlides(1);
@@ -45,6 +45,7 @@ const Row = ({ title, fetchUrl }) => {
       }
     };
     fetchData();
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 

@@ -34,12 +34,17 @@ const Login = () => {
         email: formData.email,
         password: formData.password,
       });
-      const { accessToken, userData } = response.data;
+      const accessToken = response.data.accessToken;
       const user = jwtDecode(accessToken);
-      dispatch(setUserAndToken({ user, accessToken, userData }));
+      dispatch(setUserAndToken({ user, accessToken }));
       setFormData({ email: "", password: "" });
       setError("");
-      navigate("/", { replace: true });
+
+      if (response.data.isFirstLogin) {
+        navigate("/preferences", { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
     } catch (error) {
       setError(error.response.data.error || "An error occurred during login.");
     }

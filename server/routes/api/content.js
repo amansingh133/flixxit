@@ -6,10 +6,7 @@ import {
   logContentConsumption,
 } from "../../controllers/content/consumption.js";
 import { getContentSuggestions } from "../../controllers/content/get-suggestions.js";
-import {
-  updateUserPreferences,
-  getUserPreferences,
-} from "../../controllers/content/preferences.js";
+
 import {
   getAllContent,
   getOneContent,
@@ -36,11 +33,6 @@ router
     passport.authenticate("jwt", { session: false }),
     logContentConsumption
   );
-
-router
-  .route("/preferences")
-  .get(passport.authenticate("jwt", { session: false }), getUserPreferences)
-  .put(passport.authenticate("jwt", { session: false }), updateUserPreferences);
 
 router.get(
   "/category/:category",

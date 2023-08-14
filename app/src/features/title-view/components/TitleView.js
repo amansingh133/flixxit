@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../styles/TitleView.css";
 import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { AddToWatchlist } from "../../watchlist";
@@ -35,7 +34,7 @@ const TitleView = () => {
         <p className="title-view-synopsis">{item.synopsis}</p>
         <div className="title-view-buttons">
           <button className="title-view-button">Play</button>
-          <AddToWatchlist classname="banner-button" content={item} />
+          <AddToWatchlist classname="title-view-button" content={item} />
         </div>
         <p className="title-view-genre">{item.genres.join(" | ")}</p>
       </div>

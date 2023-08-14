@@ -74,7 +74,7 @@ const Profile = () => {
 
               <div className="menu-container">
                 <ProfileMenu />
-                <div className="buttons-container">
+                <div className="profile-buttons-container">
                   <button
                     className="profile-buttons"
                     onClick={handleChangePassword}

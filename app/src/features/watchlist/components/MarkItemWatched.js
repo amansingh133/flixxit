@@ -20,7 +20,6 @@ const MarkItemWatched = ({ userId, contentId, status }) => {
       );
       dispatch(markContentAsWatched(res.data.status));
       setCurrentStatus(res.data.status);
-      console.log(currentStatus);
     } catch (err) {
       console.error("Error removing content from watchlist:", err);
     }
