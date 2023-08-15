@@ -2,7 +2,7 @@ import React from "react";
 import CheckboxGroup from "./CheckBoxGroup";
 import "../styles/PreferenceForm.css";
 
-const PreferenceForm = ({ handleSubmit, handleCheckBox, message }) => {
+const PreferenceForm = ({ handleSubmit, handleCheckBox }) => {
   const genreOptions = [
     { label: "Action", value: "Action" },
     { label: "Adventure", value: "Adventure" },
@@ -26,7 +26,6 @@ const PreferenceForm = ({ handleSubmit, handleCheckBox, message }) => {
     <div className="preference-page-container">
       <div className="preference-form-wrapper">
         <h1>Update Your Preferences</h1>
-        <p>{message}</p>
         <form className="preference-form" onSubmit={handleSubmit}>
           <CheckboxGroup
             title="Genres"

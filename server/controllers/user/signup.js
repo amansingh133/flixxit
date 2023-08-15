@@ -8,8 +8,12 @@ const signUpUser = async (req, res) => {
 
     if (existingUser) {
       return res.status(400).json({
-        error: "Email already exists. Please log in with your email.",
-        redirectUrl: "/user/login",
+        errors: [
+          {
+            msg: "Email already exists. Please log in with your email.",
+            redirectUrl: "/user/login",
+          },
+        ],
       });
     }
 
@@ -41,8 +45,12 @@ const signUpUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Signup Unsuccessful. Please try again",
-      redirectUrl: "/user/singup",
+      errors: [
+        {
+          msg: "Signup Unsuccessful. Please try again",
+          redirectUrl: "/user/singup",
+        },
+      ],
     });
   }
 };

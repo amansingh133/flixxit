@@ -1,0 +1,38 @@
+.redirect-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.redirect-modal-content > p {
+  text-align: center;
+  color: black;
+  font-weight: 700;
+  font-size: 18px;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.redirect-link {
+  margin: 0 auto;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.5vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  background-color: rgba(51, 51, 51);
+  padding-bottom: 0.5rem;
+  font-size: 18px;
+}
+
+.redirect-link:hover {
+  color: #000;
+  background-color: rgba(225, 225, 225);
+  transition: all 0.3s;
+}

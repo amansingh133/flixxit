@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useFormContext from "../hooks/useFormContext";
 import useLogout from "../../../hooks/useLogout";
-import PasswordModal from "../../../components/modal/PasswordModal";
+import PasswordModal from "../../../components/modal/components/PasswordModal";
 
 const InputNewPassword = () => {
   const axiosPrivate = useAxiosPrivate();

@@ -13,16 +13,6 @@
   font-weight: 700;
 }
 
-.preference-form-wrapper > p {
-  width: 50%;
-  margin: 20px auto;
-  color: #e87c03;
-  font-weight: 600;
-  font-size: 2.5vw;
-  opacity: 0;
-  animation: fadeIn 0.3s ease-in-out forwards;
-}
-
 .preference-form {
   margin: 2px;
   padding: 5px;

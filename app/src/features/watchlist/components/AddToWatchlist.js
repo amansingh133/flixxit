@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { callApi } from "../../../api/callApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addContentToWatchlist } from "../slices/watchlist-slice";
@@ -9,7 +9,7 @@ const AddToWatchlist = ({ content, classname }) => {
   const dispatch = useDispatch();
   const axiosPrivate = useAxiosPrivate();
   const userId = useSelector((state) => state.user.user.id);
-
+  const navigate = useNavigate();
   const [present, setPresent] = useState(false);
   const [clicked, setClicked] = useState(false);
 
@@ -43,9 +43,9 @@ const AddToWatchlist = ({ content, classname }) => {
   return (
     <>
       {present ? (
-        <Link to="/watchlist" className={classname}>
+        <button className={classname} onClick={() => navigate("/watchlist")}>
           Go to Watchlist
-        </Link>
+        </button>
       ) : (
         (!clicked || !present) && (
           <button className={classname} onClick={addToWatchList}>

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../../api/axios";
 import { callApi } from "../../../api/callApi";
 import Logo from "../../../components/logo/Logo";
-import PasswordModal from "../../../components/modal/PasswordModal";
+import PasswordModal from "../../../components/modal/components/PasswordModal";
+import RedirectModal from "../../../components/modal/components/RedirectModal";
 import "../styles/form.css";
 
 const Signup = () => {
-  const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -36,7 +37,7 @@ const Signup = () => {
     }
 
     if (!emailRegex.test(formData.email)) {
-      setErr(["Invalid email address"]);
+      setErr([{ msg: "Invalid email address" }]);
       return;
     }
 
@@ -48,16 +49,12 @@ const Signup = () => {
       });
 
       if (response.status === 200) {
-        navigate("/login", { replace: true });
         setErr([]);
+        setOpenModal(true);
       }
     } catch (error) {
       console.log(error);
-      if (error.response && error.response.data && error.response.data.errors) {
-        setErr(error.response.data.errors);
-      } else {
-        setErr(["An error occurred during signup."]);
-      }
+      setErr(error.response.data.errors || "An error occured during signup");
     }
   };
 
@@ -79,15 +76,14 @@ const Signup = () => {
             <PasswordModal />
           </div>
           {!passwordMatch && <p className="error">Passwords do not match</p>}
-          {err.length > 0 && (
-            <div>
-              {err.map((error, index) => (
-                <p key={index} className="error">
-                  {error.msg}
-                </p>
-              ))}
-            </div>
-          )}
+
+          {err.length > 0 &&
+            err.map((error, index) => (
+              <p key={index} className="error">
+                {error.msg}
+              </p>
+            ))}
+
           <input
             type="text"
             name="name"
@@ -137,6 +133,14 @@ const Signup = () => {
           </h4>
         </form>
       </section>
+      {openModal && (
+        <RedirectModal
+          message="Signup successful! You can now login."
+          linkTo="/login"
+          linkText="Login"
+          openModal={openModal}
+        />
+      )}
     </div>
   );
 };

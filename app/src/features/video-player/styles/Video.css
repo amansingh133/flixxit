@@ -1,44 +1,13 @@
-/* VideoPlayer.css .video-player-container {
+.video-player {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.video-wrapper {
-  position: relative;
-  padding-top: 56.25%; 
-}
-
-.react-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .controls {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  margin-top: 10px;
 }
 
-.controls button,
-.controls input {
-  margin-right: 8px;
+button {
+  margin-right: 10px;
 }
-
-.controls input[type="range"] {
-  flex-grow: 1;
-}
-
-.controls button {
-  border: none;
-  background-color: transparent;
-  color: white;
-  cursor: pointer;
-}
-
-.controls button:hover {
-  color: #f00;
-} */

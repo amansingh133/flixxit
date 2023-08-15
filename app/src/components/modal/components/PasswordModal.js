@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { BsFillInfoCircleFill } from "react-icons/bs";
-import "./PasswordModal.css";
+import "../styles/PasswordModal.css";
 
 const PasswordModal = () => {
   const [isOpen, setIsOpen] = useState(false);

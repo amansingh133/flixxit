@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import PreferenceFrom from "./PreferenceFrom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { callApi } from "../../../api/callApi";
+import RedirectModal from "../../../components/modal/components/RedirectModal";
 
 const Preference = () => {
   const axiosPrivate = useAxiosPrivate();
+
+  const [openModal, setOpenModal] = useState(false);
 
   const [selectedCheckboxes, setSelectedCheckboxes] = useState({
     genres: [],
@@ -43,6 +46,7 @@ const Preference = () => {
       );
 
       setMessage(response.data.message);
+      setOpenModal(true);
 
       setSelectedCheckboxes({
         genres: [],
@@ -55,11 +59,20 @@ const Preference = () => {
   };
 
   return (
-    <PreferenceFrom
-      handleSubmit={handleSubmit}
-      handleCheckBox={handleCheckBox}
-      message={message}
-    />
+    <>
+      <PreferenceFrom
+        handleSubmit={handleSubmit}
+        handleCheckBox={handleCheckBox}
+      />
+      {openModal && (
+        <RedirectModal
+          message={`${message}.`}
+          linkTo="/"
+          linkText="Home Page"
+          openModal={openModal}
+        />
+      )}
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import "./ModalContainer.css";
+import "../styles/ModalContainer.css";
 
 const ModalContainer = ({ isOpen, onRequestClose, children }) => {
   return (
