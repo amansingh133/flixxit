@@ -1,4 +1,6 @@
 import React from "react";
+import "./App.css";
+
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import PersistLogin from "./services/PersistLogin";
@@ -11,9 +13,7 @@ import ResetPassword from "./features/reset-password";
 import { TitlePage } from "./features/title-view";
 import { WatchlistPage } from "./features/watchlist";
 import { Preferences } from "./features/preferences";
-import { VideoPlayerWrapper } from "./features/video-player";
-
-import "./App.css";
+import { VideoPage } from "./features/video-player";
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
               <Route path="title/:id" element={<TitlePage />} />
               <Route path="watchlist" element={<WatchlistPage />} />
               <Route path="preferences" element={<Preferences />} />
-              <Route path="video" element={<VideoPlayerWrapper />} />
+              <Route path="video" element={<VideoPage />} />
             </Route>
           </Route>
 

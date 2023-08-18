@@ -1,1 +1,1 @@
-export { default as VideoPlayerWrapper } from "./components/VideoPlayerWrapper";
+export { default as VideoPage } from "./pages/VideoPage";

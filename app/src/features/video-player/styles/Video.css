@@ -1,13 +1,23 @@
-.video-player {
+.video-player-page {
+  text-align: center;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-video-container{
+  
+}
+
+.player-wrapper {
   position: relative;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
-.controls {
-  margin-top: 10px;
-}
-
-button {
-  margin-right: 10px;
+.player {
+  border: 2px solid #e50914;
 }
