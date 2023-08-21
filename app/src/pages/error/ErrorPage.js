@@ -11,7 +11,7 @@ const ErrorPage = ({ errorCode = 404, errorMessage = "Page not found" }) => {
 
   return (
     <div className="error-container">
-      <div className="text">
+      <div className="error-text">
         <h1>{errorCode}</h1>
         <h2>{errorMessage}</h2>
         <button onClick={clickHandler}>Go to Home</button>

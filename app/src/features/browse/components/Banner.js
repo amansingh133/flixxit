@@ -14,6 +14,7 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Message from "../../../pages/Message/Message";
 
 const Banner = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -36,7 +37,7 @@ const Banner = () => {
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
+        <Message message="Loading..." />
       ) : (
         <CarouselProvider
           className="banner-container"

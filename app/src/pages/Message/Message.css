@@ -1,0 +1,16 @@
+.message-page {
+  position: relative;
+}
+
+.message-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5vw;
+  color: #e50914;
+}

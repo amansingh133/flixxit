@@ -14,8 +14,12 @@ const FullScreen = ({ playerRef, onFullScreenChange }) => {
   };
 
   return (
-    <button className="fullScreen-button" onClick={toggleFullScreen}>
-      {screenfull.isFullscreen ? <MdFullscreenExit /> : <MdFullscreen />}
+    <button className="fullScreen-button-wrapper" onClick={toggleFullScreen}>
+      {screenfull.isFullscreen ? (
+        <MdFullscreenExit size="3vw" color="white" />
+      ) : (
+        <MdFullscreen size="3vw" color="white" />
+      )}
     </button>
   );
 };

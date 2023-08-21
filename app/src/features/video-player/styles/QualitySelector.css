@@ -1,0 +1,61 @@
+.quality-selector {
+  position: relative;
+  width: 13vw;
+  font-size: 1.3vw;
+}
+
+.custom-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 8px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  text-align: center;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  display: none;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+  border-top: none;
+  z-index: 1;
+  text-align: center;
+}
+
+.custom-select.open-selector .options {
+  display: flex;
+}
+
+.option {
+  padding: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: rgba(229, 9, 20, 0.8);
+  border-radius: 10px;
+}
+
+.option.selectedOption {
+  color: white;
+}
+
+.arrow-icon {
+  transition: transform 0.3s;
+}
+
+.open-selector .arrow-icon {
+  transform: rotate(180deg);
+}

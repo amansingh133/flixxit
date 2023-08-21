@@ -26,8 +26,8 @@ const BannerItem = ({ item }) => {
         <div className="banner-buttons">
           <Link
             className="banner-button"
-            to={`/video/${item._id}`}
-            state={{ content: item }}
+            to="/video"
+            state={{ contentArray: [item] }}
           >
             Play
           </Link>

@@ -1,6 +1,7 @@
-.fullscreen-button {
+.fullScreen-button-wrapper {
+  display: block;
+  margin-left: 20px;
+  cursor: pointer;
   background: none;
   border: none;
-  font-size: 24px;
-  cursor: pointer;
 }

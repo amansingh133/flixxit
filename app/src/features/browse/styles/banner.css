@@ -6,7 +6,7 @@
   position: relative;
   object-fit: contain;
   color: white;
-  height: 480px;
+  height: 430px;
   mix-blend-mode: difference;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .banner--fadebottom {
-  height: 10rem;
+  height: 7rem;
   background-image: linear-gradient(
     180deg,
     transparent,

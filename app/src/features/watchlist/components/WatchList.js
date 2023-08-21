@@ -6,6 +6,9 @@ import RemoveFromWatchlist from "./RemoveFromWatchlist";
 import MarkItemWatched from "./MarkItemWatched";
 import { callApi } from "../../../api/callApi";
 import { Link } from "react-router-dom";
+import { BsFillPlayFill } from "react-icons/bs";
+import Tooltip from "../../../components/tooltip/Tooltip";
+import Message from "../../../pages/Message/Message";
 
 const WatchList = () => {
   const dispatch = useDispatch();
@@ -26,16 +29,33 @@ const WatchList = () => {
   const watchlistItems = useSelector((state) => state.watchlist);
 
   if (watchlistItems.length === 0) {
-    return <h1 className="empty-watchlist">Watchlist is empty</h1>;
+    return <Message message="Watchlist is Empty" />;
   }
+
+  const contentArray = watchlistItems.map((item) => item.content);
 
   return (
     <>
       {isLoading ? (
-        <h1 className="empty-watchlist">Loading...</h1>
+        <Message message="Loading..." />
       ) : (
         <div className="watchlist-container">
-          <h1>My Watchlist</h1>
+          <header className="watchlist-header">
+            <h1 className="watchlist-title">My Watchlist</h1>
+            <Link
+              className="play-all-container"
+              to="/video"
+              state={{ contentArray: contentArray }}
+            >
+              <p>Play All</p>
+              <BsFillPlayFill
+                className="play-all-button"
+                color="#e50914"
+                cursor="pointer"
+                size="5vw"
+              />
+            </Link>
+          </header>
           <ul>
             {watchlistItems.map((item) => (
               <li
@@ -54,6 +74,16 @@ const WatchList = () => {
                 </Link>
 
                 <div className="watchlist-buttons">
+                  <Tooltip tooltipText="Play">
+                    <Link to="/video" state={{ contentArray: [item.content] }}>
+                      <BsFillPlayFill
+                        color="#e50914"
+                        cursor="pointer"
+                        size="3.5vw"
+                      />
+                    </Link>
+                  </Tooltip>
+
                   <MarkItemWatched
                     userId={userId}
                     contentId={item.content._id}

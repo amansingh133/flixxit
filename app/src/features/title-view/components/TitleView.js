@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { AddToWatchlist } from "../../watchlist";
 import { Link } from "react-router-dom";
+import Message from "../../../pages/Message/Message";
 
 const TitleView = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const TitleView = () => {
   }, [id, axiosPrivate]);
 
   if (!item) {
-    return <div className="title-view-container loading">Loading...</div>;
+    return <Message message="Loading..." />;
   }
 
   return (
@@ -36,8 +37,8 @@ const TitleView = () => {
         <div className="title-view-buttons">
           <Link
             className="banner-button"
-            to={`/video/${item._id}`}
-            state={{ content: item }}
+            to="/video"
+            state={{ contentArray: [item] }}
           >
             Play
           </Link>
