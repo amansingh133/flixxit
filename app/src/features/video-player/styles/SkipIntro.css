@@ -1,9 +1,7 @@
 .skip-intro-button {
   display: block;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100%;
   padding: 8px 12px;
   background-color: #007bff;
   color: white;

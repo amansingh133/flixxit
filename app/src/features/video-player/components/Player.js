@@ -6,7 +6,7 @@ import QualitySelector from "./QualitySelector";
 import ErrorPage from "../../../pages/error/ErrorPage";
 import FullScreen from "./FullScreen";
 
-const Player = ({ url1080, url720 }) => {
+const Player = ({ url1080, url720, title }) => {
   const playerRef = useRef(null);
   const playerDivRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
@@ -52,11 +52,13 @@ const Player = ({ url1080, url720 }) => {
       {error ? (
         <ErrorPage errorMessage={error} />
       ) : (
-        <>
+        <div
+          className="player-wrapper"
+          id={`${isFullScreen ? "myPlayerWrapper" : ""}`}
+        >
           <video
-            id={`${isFullScreen ? "myvideo" : ""}`}
+            id={`${isFullScreen ? "myPlayer" : ""}`}
             className="player"
-            height="400px"
             ref={playerRef}
             autoPlay
             controls
@@ -75,21 +77,26 @@ const Player = ({ url1080, url720 }) => {
           </video>
 
           <div className="player-controls">
+            <div className="top-container">
+              <h1 className="video-page-title">{title}</h1>
+              <QualitySelector
+                qualityOptions={qualityOptions}
+                networkStrength={networkStrength}
+                onSelectQuality={handleQualityChange}
+              />
+            </div>
+
             <SkipIntro
               currentTime={currentTime}
               onSkipIntro={handleSkipIntro}
             />
-            <QualitySelector
-              qualityOptions={qualityOptions}
-              networkStrength={networkStrength}
-              onSelectQuality={handleQualityChange}
-            />
+
             <FullScreen
               playerRef={playerDivRef}
               onFullScreenChange={handleFullScreenChange}
             />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

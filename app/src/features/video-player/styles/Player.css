@@ -1,12 +1,31 @@
 .video-player {
-  position: relative;
+  color: #e50914;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
   width: 100%;
-  /* max-width: 800px; */
-  margin: 0 auto;
+  overflow: hidden;
 }
 
-video {
-  width: 100%;
+.player-wrapper {
+  position: relative;
+  margin: 80px 0 0 0;
+}
+
+.player {
+  max-width: 100%;
+  max-height: 98%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+  border: 5px solid #e50914;
+  border-radius: 25px;
+  margin: 0;
+  padding: 0;
+  z-index: 0;
 }
 
 video::-webkit-media-controls-fullscreen-button {
@@ -15,34 +34,37 @@ video::-webkit-media-controls-fullscreen-button {
 
 .player-controls {
   position: absolute;
-  top: 20px;
+  height: 30px;
+  top: 3px;
+  bottom: 0;
+  right: 0;
   left: 0;
-  width: 100%;
-  background-color: red;
-  color: white;
-  padding: 10px;
-  box-sizing: border-box;
+  z-index: 0;
+}
+
+.top-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin: 10px 20px;
 }
 
-/* Style for individual control buttons */
-.player-controls button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-  outline: none;
+.top-container > h1 {
+  font-size: 3vw;
+  font-weight: 700;
+  margin: 0;
 }
 
-#myvideo {
+#myPlayerWrapper {
+  margin-top: 0;
+}
+
+#myPlayerWrapper > .player-controls > .top-container > .video-page-title {
+  display: none;
+}
+
+#myPlayer {
   width: 100%;
   height: 100%;
-}
-
-@media screen and (max-width: 600px) {
-  .video-player {
-    max-width: 100%;
-  }
+  border: none;
+  border-radius: 0;
 }

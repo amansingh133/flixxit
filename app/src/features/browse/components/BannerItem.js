@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AddToWatchlist } from "../../watchlist";
+import { Link } from "react-router-dom";
 
 const BannerItem = ({ item }) => {
   const navigate = useNavigate();
@@ -23,7 +24,13 @@ const BannerItem = ({ item }) => {
           {item.title}
         </h1>
         <div className="banner-buttons">
-          <button className="banner-button">Play</button>
+          <Link
+            className="banner-button"
+            to={`/video/${item._id}`}
+            state={{ content: item }}
+          >
+            Play
+          </Link>
           <AddToWatchlist classname="banner-button" content={item} />
         </div>
       </div>

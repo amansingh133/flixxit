@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { AddToWatchlist } from "../../watchlist";
+import { Link } from "react-router-dom";
 
 const TitleView = () => {
   const { id } = useParams();
@@ -33,7 +34,13 @@ const TitleView = () => {
         <h1 className="title-view-title">{item.title}</h1>
         <p className="title-view-synopsis">{item.synopsis}</p>
         <div className="title-view-buttons">
-          <button className="title-view-button">Play</button>
+          <Link
+            className="banner-button"
+            to={`/video/${item._id}`}
+            state={{ content: item }}
+          >
+            Play
+          </Link>
           <AddToWatchlist classname="title-view-button" content={item} />
         </div>
         <p className="title-view-genre">{item.genres.join(" | ")}</p>
