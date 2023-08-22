@@ -1,0 +1,52 @@
+.plans-container {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.plan-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  width: 60%;
+  margin: 150px auto;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.plan-container > h3,
+.plan-container > h4 {
+  margin: 0;
+  font-size: 2vw;
+}
+
+.plan-button {
+  padding: 10px;
+  margin: 2px;
+  font-size: 1.8vw;
+  color: #fff;
+  width: 25%;
+  background-color: rgba(225, 225, 225, 0.5);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.plan-button:disabled {
+  cursor: not-allowed;
+}
+
+.plan-button:not(:disabled):hover {
+  color: #000;
+  background-color: #e50914;
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .plan-container {
+    width: 100%;
+  }
+}

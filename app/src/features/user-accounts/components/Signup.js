@@ -53,7 +53,6 @@ const Signup = () => {
         setOpenModal(true);
       }
     } catch (error) {
-      console.log(error);
       setErr(error.response.data.errors || "An error occured during signup");
     }
   };

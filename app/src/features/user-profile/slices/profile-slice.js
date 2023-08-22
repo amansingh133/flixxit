@@ -4,7 +4,11 @@ const initialState = {
   userProfile: null,
   menuOptions: [
     { name: "Preferences", path: "/preferences", button: "Update" },
-    { name: "Subscription Details", path: "/subscription", button: "View" },
+    {
+      name: "Subscription Details",
+      path: "/subscription/details",
+      button: "View",
+    },
     { name: "Watch List", path: "/watchlist", button: "View" },
   ],
 };

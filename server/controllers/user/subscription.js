@@ -18,10 +18,12 @@ export const handleSubscriptionRequest = async (req, res) => {
       expirationDate: user.accountDetails.subscription.expirationDate,
     };
 
-    res.json({ message: "Subscription successful", invoice });
+    return res
+      .status(200)
+      .json({ message: "Subscription successful", invoice });
   } catch (error) {
     console.error("Error handling subscription:", error);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: "Server error" });
   }
 };
 
@@ -34,13 +36,14 @@ export const cancelSubscription = async (req, res) => {
     }
     user.cancelSubscription();
 
-    const invoice = {
-      cancellationDate: new Date(),
-    };
-    res.json({ message: "Subscription cancelled", invoice });
+    const cancellationDate = new Date();
+
+    return res
+      .status(200)
+      .json({ message: "Subscription cancelled", cancellationDate });
   } catch (error) {
     console.error("Error cancelling subscription:", error);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: "Server error" });
   }
 };
 
@@ -55,7 +58,8 @@ export const checkSubscriptionStatus = async (req, res) => {
     const { isSubscribed, subscriptionType, paymentDate, expirationDate } =
       user.accountDetails.subscription;
 
-    res.json({
+    return res.status(200).json({
+      email: user.email,
       isSubscribed,
       subscriptionType,
       paymentDate,
@@ -63,6 +67,6 @@ export const checkSubscriptionStatus = async (req, res) => {
     });
   } catch (error) {
     console.error("Error checking subscription status:", error);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: "Server error" });
   }
 };

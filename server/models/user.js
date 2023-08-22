@@ -37,7 +37,7 @@ const userSchema = new Schema({
     lastLoggedIn: { type: Date, default: null },
     subscription: {
       isSubscribed: { type: Boolean, default: false },
-      subscriptionType: { type: String, default: "Yearly" },
+      subscriptionType: { type: String, default: null },
       paymentDate: { type: Date, default: null },
       expirationDate: { type: Date, default: null },
     },
@@ -109,7 +109,7 @@ userSchema.methods.updateSubscription = async function (type) {
 
     if (type === "monthly") {
       expirationDate.setMonth(expirationDate.getMonth() + 1);
-    } else if (type === "annual") {
+    } else if (type === "yearly") {
       expirationDate.setFullYear(expirationDate.getFullYear() + 1);
     }
 

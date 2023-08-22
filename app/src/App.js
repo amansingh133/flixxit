@@ -14,6 +14,7 @@ import { TitlePage } from "./features/title-view";
 import { WatchlistPage } from "./features/watchlist";
 import { Preferences } from "./features/preferences";
 import { VideoPage } from "./features/video-player";
+import { SubscriptionPage, Plans } from "./features/subscription";
 
 const App = () => {
   return (
@@ -29,6 +30,11 @@ const App = () => {
               <Route path="watchlist" element={<WatchlistPage />} />
               <Route path="preferences" element={<Preferences />} />
               <Route path="video" element={<VideoPage />} />
+              <Route
+                path="subscription/details"
+                element={<SubscriptionPage />}
+              />
+              <Route path="subscription/plans" element={<Plans />} />
             </Route>
           </Route>
 
