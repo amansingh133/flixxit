@@ -23,16 +23,12 @@ body:focus {
   outline: none !important;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-@media (max-width: 742px) {
+@media (max-width: 768px) {
   body {
     scrollbar-width: none;
   }

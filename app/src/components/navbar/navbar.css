@@ -29,14 +29,23 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 0 auto;
+  height: 90px;
 }
 
 .nav_logo {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-left: 20px;
   cursor: pointer;
   object-fit: contain;
+  width: 22%;
+}
+
+.nav-search {
+  display: block;
+  margin: 30px 20px;
+  flex: 1;
 }
 
 .nav_link {
@@ -48,8 +57,8 @@
 }
 
 .user-init {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +74,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 35px;
   mix-blend-mode: multiply;
 }
 
@@ -79,9 +88,8 @@
   }
 
   .nav_logo {
-    top: 12px;
     width: 18%;
-    padding-left: 10px;
+    padding-left: 20px;
   }
 
   .nav_link {

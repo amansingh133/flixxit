@@ -1,5 +1,6 @@
 .message-page {
   position: relative;
+  height: 100vh;
 }
 
 .message-section {

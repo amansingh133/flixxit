@@ -24,6 +24,7 @@
 
 .subDetails-info {
   display: flex;
+  flex-direction: column;
 }
 
 .subDetails-details {
@@ -42,14 +43,14 @@
 .subDetails-buttons-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .subDetails-buttons {
   padding: 10px 20px;
   font-size: 1rem;
   margin: 5px 0;
-  width: 40%;
+  width: 45%;
   color: white;
   background-color: #e50914;
   font-weight: 600;
@@ -93,7 +94,7 @@
     margin-left: 0;
   }
 
-  .profile-body {
+  .subDetails-body {
     padding-top: 50px;
     background-image: none;
     width: 100%;
@@ -119,7 +120,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 3%;
   }
   .subDetails-buttons {
     width: 100%;

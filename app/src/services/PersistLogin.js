@@ -26,7 +26,25 @@ const PersistLogin = () => {
     return () => (isMounted = false);
   }, []);
 
-  return <>{isLoading ? <p>Loading...</p> : <Outlet />}</>;
+  return (
+    <>
+      {isLoading ? (
+        <p
+          style={{
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "#111",
+            color: "#e50914",
+            fontWeight: "bold",
+          }}
+        >
+          Loading...
+        </p>
+      ) : (
+        <Outlet />
+      )}
+    </>
+  );
 };
 
 export default PersistLogin;

@@ -38,6 +38,7 @@ const InputEmail = () => {
           id="email"
           name="email"
           placeholder="Enter Registered Email"
+          required
           autoComplete="off"
           value={email}
           onChange={(e) => {

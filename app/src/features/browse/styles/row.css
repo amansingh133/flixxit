@@ -15,7 +15,6 @@
   flex-wrap: nowrap;
   transform: translateX(0px);
   transition: all 1s ease;
-  margin-bottom: 10px;
 }
 
 .row-wrapper {

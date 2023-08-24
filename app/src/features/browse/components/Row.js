@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "../styles/row.css";
 import { tmdbAxios } from "../api/tmdb-content";
-
+import { memo } from "react";
 import {
   CarouselProvider,
   Slider,
@@ -12,7 +12,7 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const Row = ({ title, fetchUrl }) => {
+const Row = memo(({ title, fetchUrl }) => {
   const [contents, setContents] = useState([]);
   const [visibleSlides, setVisibleSlides] = useState(6);
 
@@ -90,6 +90,6 @@ const Row = ({ title, fetchUrl }) => {
       </CarouselProvider>
     </div>
   );
-};
+});
 
 export default Row;

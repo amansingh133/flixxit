@@ -1,0 +1,19 @@
+.search-results-container {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; */
+  border: 1px solid white;
+  color: white;
+}
+
+.search-error {
+  color: #e87c03;
+  margin: 0 6px 6px 6px;
+  padding: 0 3px 6px 3px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}

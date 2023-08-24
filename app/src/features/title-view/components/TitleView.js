@@ -28,6 +28,7 @@ const TitleView = () => {
         backgroundImage: `url(${item.background_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
+        objectFit: "contain",
       }}
     >
       <div className="title-view-contents">
@@ -36,7 +37,7 @@ const TitleView = () => {
         <p className="title-view-synopsis">{item.synopsis}</p>
         <div className="title-view-buttons">
           <Link
-            className="banner-button"
+            className="title-view-button"
             to="/video"
             state={{ contentArray: [item] }}
           >

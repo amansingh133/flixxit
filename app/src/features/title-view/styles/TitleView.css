@@ -1,12 +1,8 @@
-.title-page-container {
-  height: 100vh;
-}
-
 .title-view-container {
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
-  height: 100vh;
   display: flex;
+  height: 100vh;
   mix-blend-mode: difference;
 }
 
@@ -22,14 +18,13 @@
 
 .title-view-title {
   display: inline-block;
-  font-size: 4.7vw;
+  font-size: 4vw;
   font-weight: 800;
-  padding-bottom: 0.3rem;
 }
 
 .title-view-synopsis {
   width: 60%;
-  font-size: 2vw;
+  font-size: 1.7vw;
 }
 
 .title-view-genre {
@@ -39,14 +34,17 @@
 
 .title-view-buttons {
   margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .title-view-button {
+  text-align: center;
   cursor: pointer;
   color: #fff;
   outline: none;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   border-radius: 0.5vw;
   padding-left: 2rem;

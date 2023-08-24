@@ -42,7 +42,7 @@
 }
 
 .mainContent {
-  margin-top: 50px;
+  margin-top: 80px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -64,7 +64,7 @@
 
 .mainTitle > h1 {
   margin: 10px;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .subTitle {
@@ -85,7 +85,6 @@
 }
 
 .readyToWatch > span {
-  font-size: 1.8rem;
   color: #e50914;
 }
 
@@ -127,7 +126,17 @@
   }
 
   .navLinkButton {
+    margin: 5px;
     padding: 2vh 6vw;
     font-size: 2.5vw;
+    width: 100%;
+  }
+
+  .buttonsContainer {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

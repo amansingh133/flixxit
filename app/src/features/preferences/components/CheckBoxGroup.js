@@ -1,6 +1,7 @@
 import React from "react";
+import { memo } from "react";
 
-const CheckboxGroup = ({ title, options, field, handleCheckBox }) => {
+const CheckboxGroup = memo(({ title, options, field, handleCheckBox }) => {
   return (
     <div className="label-wrapper">
       <h3 className="preference-title">{title}</h3>
@@ -22,5 +23,6 @@ const CheckboxGroup = ({ title, options, field, handleCheckBox }) => {
       </div>
     </div>
   );
-};
+});
+
 export default CheckboxGroup;

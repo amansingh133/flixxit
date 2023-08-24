@@ -3,6 +3,7 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import Logo from "../logo/Logo";
 import { useSelector } from "react-redux";
+import { Search } from "../../features/search/index";
 
 const Navbar = () => {
   const userName = useSelector((state) => state.user.user.name);
@@ -28,6 +29,11 @@ const Navbar = () => {
         <div className="nav_logo">
           <Logo />
         </div>
+
+        <div className="nav-search">
+          <Search />
+        </div>
+
         <div className="nav_link">
           <Link className="user-init" to="/profile">
             <p>{userName.charAt(0)}</p>

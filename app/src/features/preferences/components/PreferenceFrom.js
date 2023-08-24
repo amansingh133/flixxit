@@ -1,8 +1,9 @@
 import React from "react";
 import CheckboxGroup from "./CheckBoxGroup";
 import "../styles/PreferenceForm.css";
+import { memo } from "react";
 
-const PreferenceForm = ({ handleSubmit, handleCheckBox }) => {
+const PreferenceForm = memo(({ handleSubmit, handleCheckBox }) => {
   const genreOptions = [
     { label: "Action", value: "Action" },
     { label: "Adventure", value: "Adventure" },
@@ -52,6 +53,6 @@ const PreferenceForm = ({ handleSubmit, handleCheckBox }) => {
       </div>
     </div>
   );
-};
+});
 
 export default PreferenceForm;
