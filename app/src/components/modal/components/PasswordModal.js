@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ModalContainer from "./ModalContainer";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { BsFillInfoCircleFill } from "react-icons/bs";
+import Tooltip from "../../tooltip/Tooltip";
 import "../styles/PasswordModal.css";
 
 const PasswordModal = () => {
@@ -41,12 +42,14 @@ const PasswordModal = () => {
 
   return (
     <div className="password-modal">
-      <BsFillInfoCircleFill
-        className="password-modal-info"
-        onClick={openModal}
-        color="#FFD700"
-        size={24}
-      />
+      <Tooltip tooltipText="Password Requirements">
+        <BsFillInfoCircleFill
+          className="password-modal-info"
+          onClick={openModal}
+          color="#FFD700"
+          size={24}
+        />
+      </Tooltip>
 
       <ModalContainer isOpen={isOpen} onRequestClose={closeModal}>
         <div className="password-modal-title-contianer">

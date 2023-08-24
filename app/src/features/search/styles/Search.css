@@ -1,0 +1,13 @@
+.search-wrapper {
+  background-color: #111;
+  min-height: 100vh;
+  color: white;
+  padding-top: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.search-header {
+  display: flex;
+  flex-direction: column;
+}

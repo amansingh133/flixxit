@@ -47,10 +47,6 @@
   transform: scale(1.5);
 }
 
-.row-posters::-webkit-scrollbar {
-  display: none;
-}
-
 .row-poster {
   width: 176px;
   max-height: 250px;

@@ -14,19 +14,6 @@
   margin: 90px auto 0 auto;
 }
 
-/* .empty-watchlist {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 5vw;
-  color: #090505;
-} */
-
 .watchlist-header {
   display: flex;
   align-items: center;

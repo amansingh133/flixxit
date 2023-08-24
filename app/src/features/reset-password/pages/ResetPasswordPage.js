@@ -4,10 +4,14 @@ import "../styles/reset-password.css";
 import Logo from "../../../components/logo/Logo";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import useLogout from "../../../hooks/useLogout";
 
 const ResetPasswordPage = () => {
   const navigate = useNavigate();
+  const logout = useLogout();
+
   const { title, page, message } = useFormContext();
+
   const content = (
     <div className="reset-page-layout">
       <div style={{ pointerEvents: "none" }} className="reset-logo-container">
@@ -21,7 +25,10 @@ const ResetPasswordPage = () => {
               className="reset-close-icon"
               size={32}
               color="red"
-              onClick={() => navigate("/welcome", { replace: true })}
+              onClick={async () => {
+                await logout();
+                navigate("/welcome", { replace: true });
+              }}
             />
           </div>
           <p className="success-message">{message}</p>

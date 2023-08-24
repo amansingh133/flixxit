@@ -24,16 +24,10 @@ const userSlice = createSlice({
     setQuery: (state, action) => {
       state.query = action.payload;
     },
-    resetSearch: (state) => {
-      state.searchResults = initialState.searchResults;
-      state.focused = initialState.focused;
-      state.error = initialState.error;
-      state.query = initialState.query;
-    },
   },
 });
 
-export const { setSearchResults, setFocused, setError, setQuery, resetSearch } =
+export const { setSearchResults, setFocused, setError, setQuery } =
   userSlice.actions;
 
 export default userSlice.reducer;

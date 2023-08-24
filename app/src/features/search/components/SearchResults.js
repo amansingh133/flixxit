@@ -5,9 +5,7 @@ import { useSelector } from "react-redux";
 const SearchResults = () => {
   const { searchResults, error } = useSelector((state) => state.search);
 
-  console.log(searchResults);
-
-  if (searchResults.length === 0) {
+  if (searchResults.length === 0 && error === null) {
     return null;
   }
 

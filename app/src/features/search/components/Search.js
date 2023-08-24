@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Search.css";
 
 import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
 import { setFocused } from "../slices/search-slice";
-
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { resetSearch } from "../utils/clear-search";
 
 const Search = () => {
   const dispatch = useDispatch();
+  const focused = useSelector((state) => state.search.focused);
+
+  useEffect(() => {
+    resetSearch(dispatch);
+  }, [dispatch]);
 
   return (
     <div
-      className="search-wrapper"
+      className={`search-wrapper ${focused ? "focused" : ""}`}
       onFocus={() => dispatch(setFocused(true))}
-      onBlur={() => dispatch(setFocused(false))}
     >
       <header className="search-header">
         <SearchForm />

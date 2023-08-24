@@ -11,7 +11,7 @@ const InputEmail = () => {
   const [err, setErr] = useState("");
   const { setMessage, setPage } = useFormContext();
 
-  const isFormValid = email !== "";
+  const isFormValid = email !== "" && err === "";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +26,13 @@ const InputEmail = () => {
       setPage((prev) => prev + 1);
       setEmail("");
     } catch (error) {
-      setErr(error.response.data.error || "An error occurred.");
+      if (error.response.status === 429) {
+        setErr(
+          "Security First! For your safety, you can only generate 1 OTP per minute. Your protection is our priority."
+        );
+      } else {
+        setErr(error.response.data.error || "An error occurred.");
+      }
     }
   };
 

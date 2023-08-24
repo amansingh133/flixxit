@@ -11,4 +11,4 @@ const createRateLimiter = (
 };
 
 export const limiter = createRateLimiter();
-export const passwordRequestLimiter = createRateLimiter(5 * 60 * 1000, 1);
+export const passwordRequestLimiter = createRateLimiter(1 * 60 * 1000, 1);

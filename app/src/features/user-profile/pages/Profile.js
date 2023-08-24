@@ -81,6 +81,7 @@ const Profile = () => {
                   >
                     Change Password
                   </button>
+
                   <button className="profile-buttons" onClick={handleLogout}>
                     Log Out
                   </button>
