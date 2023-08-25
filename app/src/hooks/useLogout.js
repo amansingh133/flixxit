@@ -10,8 +10,7 @@ const useLogout = () => {
     dispatch(clearUserAndToken());
 
     try {
-      // eslint-disable-next-line no-unused-vars
-      const response = await axiosPrivate.get("/user/logout");
+      await axiosPrivate.get("/user/logout");
     } catch (error) {
       console.log(error);
     }

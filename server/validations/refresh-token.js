@@ -45,17 +45,9 @@ export const refreshAccessToken = async (req, res) => {
       process.env.tokenExpirationDuration
     );
 
-    const userData = {
-      consumption: user.consumption,
-      preferences: user.preferences,
-      watchlist: user.watchlist,
-      accountDetails: user.accountDetails,
-    };
-
     res.status(200).json({
       message: "New access token generated",
       accessToken: newAccessToken,
-      userData,
     });
   } catch (err) {
     if (err.name === "TokenExpiredError") {

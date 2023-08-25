@@ -1,13 +1,16 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import History from "../components/History";
+import Message from "../../../pages/Message/Message";
 
 const ConsumptionPage = () => {
   return (
     <div className="consumption-history-page">
       <Navbar />
 
-      <History />
+      <Suspense fallback={<Message message="Loading..." />}>
+        <History />
+      </Suspense>
     </div>
   );
 };
