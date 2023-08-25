@@ -16,6 +16,7 @@ import { Preferences } from "./features/preferences";
 import { VideoPage } from "./features/video-player";
 import { SubscriptionPage, Plans } from "./features/subscription";
 import { SearchPage } from "./features/search";
+import { ConsumptionPage } from "./features/consumption";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
               />
               <Route path="subscription/plans" element={<Plans />} />
               <Route path="search" element={<SearchPage />} />
+              <Route path="history" element={<ConsumptionPage />} />
             </Route>
           </Route>
 

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userProfile: null,
   menuOptions: [
+    { name: "Consumption History", path: "/history", button: "View" },
     { name: "Preferences", path: "/preferences", button: "Update" },
     {
       name: "Subscription Details",

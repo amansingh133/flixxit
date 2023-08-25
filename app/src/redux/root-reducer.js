@@ -4,6 +4,7 @@ import { contentReducer, tmdbReducer } from "../features/browse/index";
 import { profileReducer } from "../features/user-profile/index";
 import { watchlistReducer } from "../features/watchlist/index";
 import { searchReducer } from "../features/search";
+import { consumptionReducer } from "../features/consumption";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   watchlist: watchlistReducer,
   search: searchReducer,
+  consumption: consumptionReducer,
 });
 
 export default rootReducer;

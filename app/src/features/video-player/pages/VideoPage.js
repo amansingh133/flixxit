@@ -31,6 +31,7 @@ const VideoPage = () => {
           url720={contentArray[contentIndex].videoUrls.resolution_720p}
           title={contentArray[contentIndex].title}
           onVideoEnd={playNextVideo}
+          id={contentArray[contentIndex]._id}
         />
       </Suspense>
     </div>

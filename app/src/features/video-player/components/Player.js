@@ -1,17 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../styles/Player.css";
-
 import SkipIntro from "./SkipIntro";
 import QualitySelector from "./QualitySelector";
 import ErrorPage from "../../../pages/error/ErrorPage";
 import FullScreen from "./FullScreen";
 import AutoPlayButton from "./AutoPlayButton";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { handleLogging } from "../utils/handle-log";
 
-const Player = ({ url1080, url720, title, onVideoEnd }) => {
+const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
   //Refs
   const playerRef = useRef(null);
   const playerDivRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  //hooks
+  const axiosPrivate = useAxiosPrivate();
 
   //States
   const [currentTime, setCurrentTime] = useState(0);
@@ -34,7 +38,11 @@ const Player = ({ url1080, url720, title, onVideoEnd }) => {
     setAutoPlay(value);
   };
 
-  const handleVideoEnd = () => {
+  const handleVideoEnd = async () => {
+    const res = await handleLogging(axiosPrivate, id);
+
+    console.log(res);
+
     if (autoPlay && onVideoEnd) {
       onVideoEnd(playerRef);
     }

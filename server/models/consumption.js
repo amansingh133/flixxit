@@ -4,10 +4,10 @@ const consumptionSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   items: [
     {
+      _id: false,
       content: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Content",
-        required: true,
       },
       date: { type: Date, default: Date.now },
     },
