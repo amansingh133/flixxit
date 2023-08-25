@@ -32,7 +32,7 @@ const Navbar = () => {
 
         <div className="nav-search">
           <Link to="/search" className="nav-search-link">
-            <BsSearch color="#e50914" size={32} /> <p>Find What You Need</p>
+            <BsSearch color="#e50914" size={25} /> <p>Find What You Need</p>
           </Link>
         </div>
 

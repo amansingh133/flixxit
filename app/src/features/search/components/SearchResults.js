@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/SearchResults.css";
 import { useSelector } from "react-redux";
+import Result from "./Result";
 
 const SearchResults = () => {
   const { searchResults, error } = useSelector((state) => state.search);
@@ -9,16 +10,15 @@ const SearchResults = () => {
     return null;
   }
 
+  console.log(searchResults);
+
   return (
     <div className="search-results-container">
       {error ? (
         <p className="search-error">{error}</p>
       ) : (
         searchResults.map((result) => (
-          <div className="search-result" key={result.id}>
-            <h2>{result.title || result.name}</h2>
-            <p>{result.overview}</p>
-          </div>
+          <Result result={result} key={result.id} />
         ))
       )}
     </div>

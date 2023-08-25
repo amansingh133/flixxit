@@ -14,7 +14,7 @@ const SearchForm = () => {
 
   const debouncedSearch = useDebounce(() => {
     handleSearch(dispatch, query);
-  }, 3000);
+  }, 500);
 
   return (
     <div className="search-input-container">
@@ -48,6 +48,7 @@ const SearchForm = () => {
           debouncedSearch();
         }}
         autoComplete="off"
+        spellCheck="false"
       />
 
       {query && (
