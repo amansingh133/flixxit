@@ -1,25 +1,53 @@
 import Content from "../../models/content.js";
 import User from "../../models/user.js";
+import Preference from "../../models/preferences.js";
+import Consumption from "../../models/consumption.js";
 
-export const getContentSuggestions = async (req, res) => {
+export const getSuggestions = async (req, res) => {
+  const userId = req.user._id;
+
   try {
-    const userId = req.user._id;
-    const user = await User.findById(userId)
-      .populate("preferences")
-      .populate("consumptionHistory");
-    const userGenres = user.preferences.genres;
+    const userPreferences = await Preference.findOne({ userId });
 
-    const consumedContentIds = user.consumptionHistory.map(
-      (consumption) => consumption.contentId
-    );
+    const userGenres = userPreferences?.genre || [];
+    const userCategories = userPreferences?.category || [];
 
-    const suggestions = await Content.find({
+    const consumptionHistory = await Consumption.findOne({ userId });
+
+    const consumedIds =
+      consumptionHistory?.items.map((consumption) => consumption.content._id) ||
+      [];
+
+    const genreSuggestions = await Content.find({
       genres: { $in: userGenres },
-      _id: { $nin: consumedContentIds },
-    }).limit(5);
+      _id: { $nin: consumedIds },
+    });
 
-    res.json(suggestions);
+    const categorySuggestions = await Content.find({
+      category: { $in: userCategories },
+      _id: { $nin: consumedIds },
+    });
+
+    const remainingLimit =
+      7 - (genreSuggestions.length + categorySuggestions.length);
+
+    const remainingSuggestions = await Content.find({
+      _id: { $nin: consumedIds },
+    }).limit(remainingLimit);
+
+    const suggestions = [
+      ...genreSuggestions,
+      ...categorySuggestions,
+      ...remainingSuggestions,
+    ];
+
+    if (suggestions.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    return res.status(200).json(suggestions);
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    console.log(error);
+    return res.status(500).json({ error: "Server error" });
   }
 };

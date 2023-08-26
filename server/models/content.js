@@ -7,8 +7,18 @@ const contentSchema = new mongoose.Schema({
   category: { type: String, required: true },
   background_path: { type: String, required: true },
   rating: {
-    upvotes: { type: Number, default: 0 },
-    downvotes: { type: Number, default: 0 },
+    upvotes: {
+      count: { type: Number, default: 0 },
+      users: [
+        { type: mongoose.Schema.Types.ObjectId, ref: "User", _id: false },
+      ],
+    },
+    downvotes: {
+      count: { type: Number, default: 0 },
+      users: [
+        { type: mongoose.Schema.Types.ObjectId, ref: "User", _id: false },
+      ],
+    },
   },
   videoUrls: {
     resolution_720p: { type: String, required: true },

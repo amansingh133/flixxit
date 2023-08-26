@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "../styles/row.css";
-import { tmdbAxios } from "../api/tmdb-content";
+import Message from "../../../pages/Message/Message";
+import { getSuggestions } from "../utils/get-suggestions";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
 import {
   CarouselProvider,
@@ -11,16 +14,22 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
-const Row = memo(({ title, fetchUrl }) => {
-  const [contents, setContents] = useState([]);
+const SuggestionsRow = memo(({ title }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
+
   const [visibleSlides, setVisibleSlides] = useState(6);
 
-  const base_url = "https://image.tmdb.org/t/p/original/";
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { suggestions, error } = useSelector((state) => state.suggestions);
 
   const handleResize = useCallback(() => {
     if (window.innerWidth >= 1200) {
-      setVisibleSlides(6);
+      setVisibleSlides(5);
     } else if (window.innerWidth >= 992) {
       setVisibleSlides(5);
     } else if (window.innerWidth >= 768) {
@@ -34,17 +43,15 @@ const Row = memo(({ title, fetchUrl }) => {
     }
   }, []);
 
+  const handleClick = (suggestion) => {
+    navigate(`/title/${suggestion._id}`);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const request = await tmdbAxios.get(fetchUrl);
-        const first15Results = request.data.results.slice(0, 15);
-        setContents(first15Results);
-      } catch (error) {
-        console.log("Error fetching data:", error);
-      }
-    };
-    fetchData();
+    getSuggestions(axiosPrivate, dispatch)
+      .then(() => setIsLoading(false))
+      .catch(() => setIsLoading(false));
+
     handleResize();
 
     window.addEventListener("resize", handleResize);
@@ -52,31 +59,49 @@ const Row = memo(({ title, fetchUrl }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [fetchUrl, handleResize]);
+  }, [axiosPrivate, dispatch, handleResize]);
+
+  if (isLoading) {
+    return <Message message="Loading..." />;
+  }
+
+  if (error) {
+    return null;
+  }
 
   return (
     <div className="row">
-      <h2>{title}</h2>
+      <h2>Suggestions</h2>
       <CarouselProvider
         className="row-posters"
-        totalSlides={contents.length}
+        totalSlides={suggestions.length}
         visibleSlides={visibleSlides}
         dragEnabled={true}
         touchEnabled={true}
         isIntrinsicHeight={true}
       >
         <Slider className="row-wrapper">
-          {contents.map(
-            (content, index) =>
-              content.poster_path && (
+          {suggestions.map(
+            (suggestion, index) =>
+              suggestion.background_path && (
                 <Slide key={index} index={index}>
-                  <img
-                    key={content.id}
-                    className="row-poster"
-                    src={`${base_url}${content.poster_path}`}
-                    alt={content.name}
-                    loading="lazy"
-                  />
+                  <div className="suggestions-container">
+                    <div
+                      className="suggestions-wrapper"
+                      onClick={() => handleClick(suggestion)}
+                    >
+                      <div className="suggestions-image">
+                        <img
+                          key={suggestion._id}
+                          className="row-poster"
+                          src={suggestion.background_path}
+                          alt={suggestion.title}
+                          loading="lazy"
+                        />
+                      </div>
+                      <p className="suggestions-title">{suggestion.title}</p>
+                    </div>
+                  </div>
                 </Slide>
               )
           )}
@@ -92,4 +117,4 @@ const Row = memo(({ title, fetchUrl }) => {
   );
 });
 
-export default Row;
+export default SuggestionsRow;

@@ -5,7 +5,7 @@ import {
   getConsumptionHistory,
   logContentConsumption,
 } from "../../controllers/content/consumption.js";
-import { getContentSuggestions } from "../../controllers/content/get-suggestions.js";
+import { getSuggestions } from "../../controllers/content/get-suggestions.js";
 
 import {
   getAllContent,
@@ -14,8 +14,8 @@ import {
   getContentByGenre,
 } from "../../controllers/content/get-content.js";
 import {
-  downvoteContent,
-  upvoteContent,
+  voteContent,
+  checkUserVote,
 } from "../../controllers/content/rating.js";
 
 const router = express.Router();
@@ -23,7 +23,7 @@ const router = express.Router();
 router.get(
   "/suggestions",
   passport.authenticate("jwt", { session: false }),
-  getContentSuggestions
+  getSuggestions
 );
 
 router
@@ -37,28 +37,27 @@ router
 router.get(
   "/category/:category",
   passport.authenticate("jwt", { session: false }),
+  checkUserVote,
   getContentByCategory
 );
 router.get(
   "/genre/:genre",
   passport.authenticate("jwt", { session: false }),
+  checkUserVote,
   getContentByGenre
 );
 
-router.put(
-  "/:id/upvote",
+router.post(
+  "/vote",
   passport.authenticate("jwt", { session: false }),
-  upvoteContent
-);
-router.put(
-  "/:id/downvote",
-  passport.authenticate("jwt", { session: false }),
-  downvoteContent
+  checkUserVote,
+  voteContent
 );
 
 router.get(
   "/:id",
   passport.authenticate("jwt", { session: false }),
+  checkUserVote,
   getOneContent
 );
 

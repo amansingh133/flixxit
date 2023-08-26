@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import HistoryCard from "./HistoryCard";
 import Message from "../../../pages/Message/Message";
+import "../styles/History.css";
 
 const History = () => {
   const dispatch = useDispatch();

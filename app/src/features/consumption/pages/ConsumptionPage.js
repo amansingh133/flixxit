@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import History from "../components/History";
 import Message from "../../../pages/Message/Message";
+import "../styles/ConsumptionPage.css";
 
 const ConsumptionPage = () => {
   return (

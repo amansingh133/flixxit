@@ -1,0 +1,8 @@
+.history-container {
+  padding-top: 70px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
