@@ -12,8 +12,25 @@
   flex: 1;
 }
 
+.title-category-ratings-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .title-view-category {
   font-size: 20px;
+  margin: 0 20px 0 0;
+}
+
+.title-view-separator {
+  margin: 0;
+  font-size: 25px;
+}
+
+.title-view-ratings-container {
+  padding-left: 20px;
 }
 
 .title-view-title {

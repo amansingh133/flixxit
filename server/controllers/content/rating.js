@@ -25,6 +25,7 @@ export const voteContent = async (req, res) => {
       message: `${req.body.type}d successfully`,
       upvotes: content.rating.upvotes.count,
       downvotes: content.rating.downvotes.count,
+      voteStatus,
     });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
@@ -32,11 +33,11 @@ export const voteContent = async (req, res) => {
 };
 
 export const checkUserVote = async (req, res, next) => {
-  const contentId = req.params;
+  const { id } = req.params;
   const userId = req.user._id;
 
   try {
-    const content = await Content.findById(contentId);
+    const content = await Content.findById(id);
 
     if (!content) {
       return res.status(404).json({ message: "Content not found" });

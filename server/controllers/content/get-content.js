@@ -13,7 +13,7 @@ export const getOneContent = async (req, res) => {
     if (!contentDetails) {
       return res.status(404).json({ error: "Title not found" });
     }
-    res.json(contentDetails, voteStatus);
+    return res.status(200).json({ contentDetails, voteStatus });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
@@ -21,32 +21,40 @@ export const getOneContent = async (req, res) => {
 
 export const getAllContent = async (req, res) => {
   const userId = req.user._id;
-  const content = await Content.find().select(
-    "-rating.upvotes.users -rating.downvotes.users"
-  );
-
-  console.log(content);
+  const content = await Content.find();
   try {
     const contentWithVotes = content.map((item) => {
-      let userVote = null;
+      let voteStatus = {
+        type: null,
+        flag: false,
+      };
 
       if (item.rating.upvotes.users.includes(userId)) {
-        userVote = "upvote";
+        voteStatus.type = "upvote";
       } else if (item.rating.downvotes.users.includes(userId)) {
-        userVote = "downvote";
-      } else {
-        userVote = null;
+        voteStatus.type = "downvote";
       }
 
+      const contentWithoutUsers = {
+        ...item.toObject(),
+        rating: {
+          upvotes: {
+            count: item.rating.upvotes.count,
+          },
+          downvotes: {
+            count: item.rating.downvotes.count,
+          },
+        },
+      };
+
       return {
-        ...item,
-        userVote: userVote,
+        ...contentWithoutUsers,
+        voteStatus,
       };
     });
 
     res.json(contentWithVotes);
   } catch (error) {
-    // console.log(error);
     res.status(500).json({ error: "Server error" });
   }
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import "../styles/row.css";
+import "../styles/SuggestionsRow.css";
 import Message from "../../../pages/Message/Message";
 import { getSuggestions } from "../utils/get-suggestions";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -29,15 +29,15 @@ const SuggestionsRow = memo(({ title }) => {
 
   const handleResize = useCallback(() => {
     if (window.innerWidth >= 1200) {
-      setVisibleSlides(5);
-    } else if (window.innerWidth >= 992) {
-      setVisibleSlides(5);
-    } else if (window.innerWidth >= 768) {
-      setVisibleSlides(4);
-    } else if (window.innerWidth >= 576) {
       setVisibleSlides(3);
-    } else if (window.innerWidth >= 400) {
+    } else if (window.innerWidth >= 992) {
+      setVisibleSlides(3);
+    } else if (window.innerWidth >= 768) {
       setVisibleSlides(2);
+    } else if (window.innerWidth >= 576) {
+      setVisibleSlides(2);
+    } else if (window.innerWidth >= 400) {
+      setVisibleSlides(1);
     } else {
       setVisibleSlides(1);
     }
@@ -86,10 +86,7 @@ const SuggestionsRow = memo(({ title }) => {
               suggestion.background_path && (
                 <Slide key={index} index={index}>
                   <div className="suggestions-container">
-                    <div
-                      className="suggestions-wrapper"
-                      onClick={() => handleClick(suggestion)}
-                    >
+                    <div className="suggestions-wrapper">
                       <div className="suggestions-image">
                         <img
                           key={suggestion._id}
@@ -99,7 +96,12 @@ const SuggestionsRow = memo(({ title }) => {
                           loading="lazy"
                         />
                       </div>
-                      <p className="suggestions-title">{suggestion.title}</p>
+                      <p
+                        className="suggestions-title"
+                        onClick={() => handleClick(suggestion)}
+                      >
+                        {suggestion.title}
+                      </p>
                     </div>
                   </div>
                 </Slide>

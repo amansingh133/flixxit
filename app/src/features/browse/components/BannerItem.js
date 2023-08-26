@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AddToWatchlist } from "../../watchlist";
 import { Link } from "react-router-dom";
+import { Rating } from "../../rating";
 
 const BannerItem = ({ item }) => {
   const navigate = useNavigate();
@@ -9,6 +10,8 @@ const BannerItem = ({ item }) => {
   const handleTitleClick = (item) => {
     navigate(`/title/${item._id}`);
   };
+
+  console.log(item);
 
   return (
     <header
@@ -32,6 +35,14 @@ const BannerItem = ({ item }) => {
             Play
           </Link>
           <AddToWatchlist classname="banner-button" content={item} />
+        </div>
+        <div className="banner-ratings">
+          <Rating
+            upvotes={item.rating.upvotes.count}
+            downvotes={item.rating.downvotes.count}
+            contentId={item._id}
+            userVote={item.voteStatus}
+          />
         </div>
       </div>
       <div className="banner--fadebottom" />

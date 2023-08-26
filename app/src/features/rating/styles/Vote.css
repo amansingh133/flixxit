@@ -1,0 +1,19 @@
+.votes-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 10px;
+  width: 80px;
+}
+
+.votes-container > p {
+  margin: 0;
+  font-size: 24px;
+}
+
+.vote-button {
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}

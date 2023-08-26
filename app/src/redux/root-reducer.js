@@ -5,6 +5,7 @@ import { profileReducer } from "../features/user-profile/index";
 import { watchlistReducer } from "../features/watchlist/index";
 import { searchReducer } from "../features/search";
 import { consumptionReducer } from "../features/consumption";
+import { ratingReducer } from "../features/rating";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
   consumption: consumptionReducer,
   suggestions: suggestionsReducer,
+  rating: ratingReducer,
 });
 
 export default rootReducer;

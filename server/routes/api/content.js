@@ -48,7 +48,7 @@ router.get(
 );
 
 router.post(
-  "/vote",
+  "/vote/:id",
   passport.authenticate("jwt", { session: false }),
   checkUserVote,
   voteContent
