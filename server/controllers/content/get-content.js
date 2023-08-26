@@ -24,15 +24,14 @@ export const getAllContent = async (req, res) => {
   const content = await Content.find();
   try {
     const contentWithVotes = content.map((item) => {
-      let voteStatus = {
-        type: null,
-        flag: false,
-      };
+      let voteStatus;
 
       if (item.rating.upvotes.users.includes(userId)) {
-        voteStatus.type = "upvote";
+        voteStatus = { type: "upvote", flag: true };
       } else if (item.rating.downvotes.users.includes(userId)) {
-        voteStatus.type = "downvote";
+        voteStatus = { type: "downvote", flag: true };
+      } else {
+        voteStatus = { type: null, flag: false };
       }
 
       const contentWithoutUsers = {

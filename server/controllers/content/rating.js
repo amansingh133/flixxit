@@ -3,31 +3,42 @@ import Content from "../../models/content.js";
 export const voteContent = async (req, res) => {
   const { content, voteStatus, userId } = req;
 
+  const voteType = req.body.type;
+
   try {
     if (voteStatus.flag) {
-      if (voteStatus.type === req.body.type) {
-        content.rating[voteStatus.type + "s"].count--;
-        await content.rating[voteStatus.type + "s"].users.pull(userId);
+      if (content.rating[voteType + "s"].users.includes(userId)) {
+        content.rating[voteType + "s"].count--;
+        content.rating[voteType + "s"].users.pull(userId);
       } else {
-        content.rating[voteStatus.type + "s"].count--;
-        await content.rating[voteStatus.type + "s"].users.pull(userId);
-        content.rating[voteStatus.type + "s"].count++;
-        await content.rating[voteStatus.type + "s"].users.push(userId);
+        content.rating[voteType + "s"].count++;
+        content.rating[voteType + "s"].users.push(userId);
+
+        const previousVoteType = voteStatus.type;
+
+        content.rating[previousVoteType + "s"].count--;
+        content.rating[previousVoteType + "s"].users.pull(userId);
       }
     } else {
-      content.rating[voteStatus.type + "s"].count++;
-      content.rating[voteStatus.type + "s"].users.push(userId);
+      content.rating[voteType + "s"].count++;
+      content.rating[voteType + "s"].users.push(userId);
     }
 
     await content.save();
 
-    return res.status(200).json({
-      message: `${req.body.type}d successfully`,
+    const response = {
+      message: `${voteType}d successfully`,
       upvotes: content.rating.upvotes.count,
       downvotes: content.rating.downvotes.count,
-      voteStatus,
-    });
+      voteStatus: {
+        flag: content.rating[voteType + "s"].users.includes(userId),
+        type: voteType,
+      },
+    };
+
+    return res.status(200).json(response);
   } catch (error) {
+    // console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -43,18 +54,18 @@ export const checkUserVote = async (req, res, next) => {
       return res.status(404).json({ message: "Content not found" });
     }
 
-    const hasUpvoted = content.rating.upvotes.users.includes(userId);
-    const hasDownvoted = content.rating.downvotes.users.includes(userId);
+    let voteStatus;
 
-    if (hasUpvoted) {
-      req.voteStatus = { type: "upvote", flag: true };
-    } else if (hasDownvoted) {
-      req.voteStatus = { type: "downvote", flag: true };
+    if (content.rating.upvotes.users.includes(userId)) {
+      voteStatus = { type: "upvote", flag: true };
+    } else if (content.rating.downvotes.users.includes(userId)) {
+      voteStatus = { type: "downvote", flag: true };
     } else {
-      req.voteStatus = { type: null, flag: false };
+      voteStatus = { type: null, flag: false };
     }
 
     req.content = content;
+    req.voteStatus = voteStatus;
     req.userId = userId;
 
     next();

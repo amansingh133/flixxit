@@ -8,13 +8,13 @@ const contentSchema = new mongoose.Schema({
   background_path: { type: String, required: true },
   rating: {
     upvotes: {
-      count: { type: Number, default: 0 },
+      count: { type: Number, default: 0, min: 0 },
       users: [
         { type: mongoose.Schema.Types.ObjectId, ref: "User", _id: false },
       ],
     },
     downvotes: {
-      count: { type: Number, default: 0 },
+      count: { type: Number, default: 0, min: 0 },
       users: [
         { type: mongoose.Schema.Types.ObjectId, ref: "User", _id: false },
       ],

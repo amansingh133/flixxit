@@ -39,11 +39,23 @@
   flex-wrap: wrap;
 }
 
-.banner-ratings {
+.upvote-percentage {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 30px;
+  margin: 30px 0 0 10px;
+}
+
+.upvote-percentage > p {
+  font-size: 1.5vw;
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+}
+
+.upvote-percentage > p > span {
+  color: #e50914;
+  font-weight: bold;
 }
 
 .banner-button {

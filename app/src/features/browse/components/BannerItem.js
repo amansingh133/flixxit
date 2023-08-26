@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AddToWatchlist } from "../../watchlist";
 import { Link } from "react-router-dom";
-import { Rating } from "../../rating";
+import Message from "../../../pages/Message/Message";
 
 const BannerItem = ({ item }) => {
   const navigate = useNavigate();
@@ -10,6 +10,16 @@ const BannerItem = ({ item }) => {
   const handleTitleClick = (item) => {
     navigate(`/title/${item._id}`);
   };
+
+  const totalVotes = item.rating.upvotes.count + item.rating.downvotes.count;
+  const upvotePercentage =
+    totalVotes === 0
+      ? 0
+      : Math.round((item.rating.upvotes.count / totalVotes) * 100);
+
+  if (!item) {
+    return <Message message="Loading..." />;
+  }
 
   console.log(item);
 
@@ -36,13 +46,14 @@ const BannerItem = ({ item }) => {
           </Link>
           <AddToWatchlist classname="banner-button" content={item} />
         </div>
-        <div className="banner-ratings">
-          <Rating
-            upvotes={item.rating.upvotes.count}
-            downvotes={item.rating.downvotes.count}
-            contentId={item._id}
-            userVote={item.voteStatus}
-          />
+        <div className="upvote-percentage">
+          {upvotePercentage === 0 ? (
+            <p>Be the first to like this!</p>
+          ) : (
+            <p>
+              {upvotePercentage}% <span>Upvotes</span>
+            </p>
+          )}
         </div>
       </div>
       <div className="banner--fadebottom" />

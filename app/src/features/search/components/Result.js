@@ -1,29 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/Result.css";
 
 const Result = ({ result }) => {
   const img_base_url = "https://image.tmdb.org/t/p/original";
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-  };
 
   return (
     <div className="search-result" key={result.id}>
       <div className="result-image">
-        {!imageLoaded && <p className="loading-message">Loading...</p>}
-        <img
-          src={`${img_base_url}${result.poster_path || result.backdrop_path}`}
-          alt={
-            result.title ||
-            result.name ||
-            result.original_title ||
-            result.original_name
-          }
-          loading="lazy"
-          onLoad={handleImageLoad}
-        />
+        {result.poster_path || result.backdrop_path ? (
+          <img
+            src={`${img_base_url}${result.poster_path || result.backdrop_path}`}
+            alt={
+              result.title ||
+              result.name ||
+              result.original_title ||
+              result.original_name
+            }
+            loading="lazy"
+          />
+        ) : (
+          <p className="image-fallback-text">No Image Available</p>
+        )}
       </div>
       <div className="result-details-container">
         <h2 className="result-title">

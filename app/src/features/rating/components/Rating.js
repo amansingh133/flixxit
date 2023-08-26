@@ -10,12 +10,12 @@ const Rating = ({ upvotes, downvotes, contentId, userVote }) => {
 
   useEffect(() => {
     updateVotes(dispatch, upvotes, downvotes, userVote);
-  }, [dispatch, upvotes, downvotes, userVote]);
+  }, [dispatch, downvotes, upvotes, userVote]);
 
   return (
     <div className="ratings-container">
-      <Upvote contentId={contentId} userVote={userVote} />
-      <Downvote contentId={contentId} userVote={userVote} />
+      <Upvote contentId={contentId} />
+      <Downvote contentId={contentId} />
     </div>
   );
 };

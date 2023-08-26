@@ -34,41 +34,39 @@ const Banner = () => {
 
   const content = useSelector((state) => state.content);
 
+  if (isLoading || content.length === 0) {
+    return <Message message="Loading..." />;
+  }
+
   return (
-    <div>
-      {isLoading ? (
-        <Message message="Loading..." />
-      ) : (
-        <CarouselProvider
-          className="banner-container"
-          naturalSlideWidth={100}
-          naturalSlideHeight={50}
-          totalSlides={content.length}
-          visibleSlides={1}
-          interval={5000}
-          isPlaying={true}
-          lockOnWindowScroll={true}
-          dragEnabled={true}
-          touchEnabled={true}
-          infinite
-          isIntrinsicHeight={true}
-        >
-          <Slider>
-            {content.map((item, index) => (
-              <Slide key={index} index={index}>
-                <BannerItem item={item} />
-              </Slide>
-            ))}
-          </Slider>
-          <ButtonBack className="back-button">
-            <IoIosArrowBack size={48} className="banner-arrows" />
-          </ButtonBack>
-          <ButtonNext className="next-button">
-            <IoIosArrowForward size={48} className="banner-arrows" />
-          </ButtonNext>
-        </CarouselProvider>
-      )}
-    </div>
+    <CarouselProvider
+      className="banner-container"
+      naturalSlideWidth={100}
+      naturalSlideHeight={50}
+      totalSlides={content.length}
+      visibleSlides={1}
+      interval={5000}
+      isPlaying={true}
+      lockOnWindowScroll={true}
+      dragEnabled={true}
+      touchEnabled={true}
+      infinite
+      isIntrinsicHeight={true}
+    >
+      <Slider>
+        {content.map((item, index) => (
+          <Slide key={index} index={index}>
+            <BannerItem item={item} />
+          </Slide>
+        ))}
+      </Slider>
+      <ButtonBack className="back-button">
+        <IoIosArrowBack size={48} className="banner-arrows" />
+      </ButtonBack>
+      <ButtonNext className="next-button">
+        <IoIosArrowForward size={48} className="banner-arrows" />
+      </ButtonNext>
+    </CarouselProvider>
   );
 };
 
