@@ -44,28 +44,10 @@ export const loginUser = async (req, res) => {
       sameSite: "lax",
     };
 
-    console.log(
-      "Token Expiration Duration:",
-      process.env.tokenExpirationDuration
-    );
-    console.log(
-      "Refresh Token Expiration:",
-      process.env.refreshTokenExpiration
-    );
-
     res.cookie("refreshToken", refreshToken, cookieOptions);
 
     return res.status(200).json({ accessToken, isFirstLogin });
   } catch (error) {
-    console.log(
-      "Token Expiration Duration:",
-      process.env.tokenExpirationDuration
-    );
-    console.log(
-      "Refresh Token Expiration:",
-      process.env.refreshTokenExpiration
-    );
-
     console.log(error);
     return res.status(500).json({ error: error });
   }
