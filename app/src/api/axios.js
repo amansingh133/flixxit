@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_AXIOS_URL;
+const BASE_URL = "https://flixxit-8k2n.onrender.com/api";
 
 // Create an instance of Axios with common configurations.
 export default axios.create({
