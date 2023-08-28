@@ -27,7 +27,7 @@ export const refreshAccessToken = async (req, res) => {
 
     const newAccessToken = await generateJwtToken(
       { sub: user._id, name: user.name, email: user.email },
-      process.env.tokenExpirationDuration
+      "4h"
     );
 
     res.status(200).json({
