@@ -16,7 +16,7 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const SuggestionsRow = memo(({ title }) => {
+const SuggestionsRow = memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -83,16 +83,16 @@ const SuggestionsRow = memo(({ title }) => {
         <Slider className="row-wrapper">
           {suggestions.map(
             (suggestion, index) =>
-              suggestion.background_path && (
+              suggestion?.background_path && (
                 <Slide key={index} index={index}>
                   <div className="suggestions-container">
                     <div className="suggestions-wrapper">
                       <div className="suggestions-image">
                         <img
-                          key={suggestion._id}
+                          key={suggestion?._id}
                           className="row-poster"
-                          src={suggestion.background_path}
-                          alt={suggestion.title}
+                          src={suggestion?.background_path}
+                          alt={suggestion?.title}
                           loading="lazy"
                         />
                       </div>

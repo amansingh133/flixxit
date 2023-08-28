@@ -5,22 +5,7 @@ export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email })
-      .populate({
-        path: "consumption",
-        populate: {
-          path: "items.content",
-          select: "_id",
-        },
-      })
-      .populate("preferences")
-      .populate({
-        path: "watchlist",
-        populate: {
-          path: "items.content",
-          select: "_id",
-        },
-      });
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({
@@ -65,11 +50,29 @@ export const loginUser = async (req, res) => {
       sameSite: "lax",
     };
 
+    console.log(
+      "Token Expiration Duration:",
+      process.env.tokenExpirationDuration
+    );
+    console.log(
+      "Refresh Token Expiration:",
+      process.env.refreshTokenExpiration
+    );
+
     res.cookie("refreshToken", refreshToken, cookieOptions);
 
     return res.status(200).json({ accessToken, isFirstLogin });
   } catch (error) {
-    console.error(error);
+    console.log(
+      "Token Expiration Duration:",
+      process.env.tokenExpirationDuration
+    );
+    console.log(
+      "Refresh Token Expiration:",
+      process.env.refreshTokenExpiration
+    );
+
+    console.log(error);
     return res.status(500).json({ error: error });
   }
 };

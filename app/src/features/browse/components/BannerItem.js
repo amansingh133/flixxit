@@ -11,11 +11,11 @@ const BannerItem = ({ item }) => {
     navigate(`/title/${item._id}`);
   };
 
-  const totalVotes = item.rating.upvotes.count + item.rating.downvotes.count;
+  const totalVotes = item?.rating.upvotes.count + item?.rating.downvotes.count;
   const upvotePercentage =
     totalVotes === 0
       ? 0
-      : Math.round((item.rating.upvotes.count / totalVotes) * 100);
+      : Math.round((item?.rating.upvotes.count / totalVotes) * 100);
 
   if (!item) {
     return <Message message="Loading..." />;
@@ -25,7 +25,7 @@ const BannerItem = ({ item }) => {
     <header
       className="banner"
       style={{
-        backgroundImage: `url(${item.background_path})`,
+        backgroundImage: `url(${item?.background_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
       }}
