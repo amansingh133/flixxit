@@ -30,15 +30,9 @@ export const loginUser = async (req, res) => {
       email: user.email,
     };
 
-    const accessToken = await generateJwtToken(
-      payload,
-      process.env.tokenExpirationDuration
-    );
+    const accessToken = await generateJwtToken(payload, "4h");
 
-    const refreshToken = await generateRefreshToken(
-      payload,
-      process.env.refreshTokenExpiration
-    );
+    const refreshToken = await generateRefreshToken(payload, "2d");
 
     user.refreshToken = refreshToken;
     await user.save();
