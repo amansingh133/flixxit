@@ -42,7 +42,8 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
     await handleLogging(axiosPrivate, id);
 
     if (autoPlay && onVideoEnd) {
-      onVideoEnd(playerRef);
+      onVideoEnd();
+      playerRef.current.load();
     }
   };
 
@@ -136,7 +137,6 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
           id={`${isFullScreen ? "myPlayerWrapper" : ""}`}
         >
           <video
-            preload="auto"
             onClick={togglePlayPause}
             id={`${isFullScreen ? "myPlayer" : ""}`}
             className="player"
@@ -150,6 +150,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
             onLoadedData={() => {
               playerRef.current.currentTime = prevTime;
               setPrevTime(0);
+              playerRef.current.play();
             }}
             onError={handleRetry}
             onEnded={handleVideoEnd}

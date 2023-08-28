@@ -10,15 +10,13 @@ const VideoPage = () => {
   const contentArray = location.state?.contentArray;
   const [contentIndex, setContentIndex] = useState(0);
 
-  const playNextVideo = (playerRef) => {
+  const playNextVideo = () => {
     if (
       contentArray &&
       contentArray.length > 1 &&
       contentIndex < contentArray.length - 1
     ) {
       setContentIndex(contentIndex + 1);
-      playerRef.current.load();
-      playerRef.current.play();
     }
   };
 
