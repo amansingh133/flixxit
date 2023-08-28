@@ -141,7 +141,6 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
             id={`${isFullScreen ? "myPlayer" : ""}`}
             className="player"
             ref={playerRef}
-            autoPlay={autoPlay}
             controls
             controlsList="nodownload nofullscreen noremoteplayback noplaybackrate foobar"
             onWaiting={setAutoType}
@@ -154,6 +153,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
             }}
             onError={handleRetry}
             onEnded={handleVideoEnd}
+            autoPlay={autoPlay}
           >
             <source src={getVideoUrl()} type="video/mp4" />
           </video>
