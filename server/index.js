@@ -23,9 +23,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+// const PORT = process.env.PORT || 8080;
+
+const PORT = 8080;
 
 app.use(helmet());
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", "https://flixxit-8k2n.onrender.com"],
+      imgSrc: ["'self'", "https://drive.google.com"],
+      mediaSrc: ["'self'", "https://drive.google.com"],
+    },
+  })
+);
+
 app.use(compression());
 
 app.use(cors(corsOptions));
