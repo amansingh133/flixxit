@@ -29,7 +29,7 @@ const router = express.Router();
 router.get(
   "/suggestions",
   passport.authenticate("jwt", { session: false }),
-  // serveSuggestions(),
+  serveSuggestions(),
   getSuggestions
 );
 
@@ -64,7 +64,7 @@ router.post(
 router.get(
   "/:id",
   passport.authenticate("jwt", { session: false }),
-  // serverOneContentFromCache(),
+  serverOneContentFromCache(),
   checkUserVote,
   getOneContent
 );
@@ -72,7 +72,7 @@ router.get(
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
-  // serveAllContentFromCache(),
+  serveAllContentFromCache(),
   getAllContent
 );
 
