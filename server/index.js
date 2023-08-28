@@ -31,7 +31,7 @@ app.use(compression());
 app.use(cors(corsOptions));
 
 app.use("/assets", express.static(join(__dirname, "public")));
-app.use(express.static(join(__dirname, "public")));
+app.use(express.static(join(__dirname, "public", "client")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
