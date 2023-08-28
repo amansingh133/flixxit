@@ -34,7 +34,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
     playerRef.current.currentTime = 20;
   };
 
-  const handleAutoPlay = (value) => {
+  const handleAutoPlay = async (value) => {
     setAutoPlay(value);
   };
 
@@ -42,13 +42,11 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
     await handleLogging(axiosPrivate, id);
 
     if (autoPlay && onVideoEnd) {
-      onVideoEnd();
-      playerRef.current.load();
-      playerRef.current.play();
+      onVideoEnd(playerRef);
     }
   };
 
-  const handleQualityChange = (newQuality) => {
+  const handleQualityChange = async (newQuality) => {
     setPrevTime(playerRef.current.currentTime);
     setSelectedQuality(newQuality);
     playerRef.current.load();
@@ -104,7 +102,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
     }
   };
 
-  const handleRetry = () => {
+  const handleRetry = async () => {
     if (retryCount < 10) {
       setRetryCount(retryCount + 1);
       setError(null);
@@ -150,6 +148,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
             onLoadedData={() => {
               playerRef.current.currentTime = prevTime;
               setPrevTime(0);
+              playerRef.current.play();
             }}
             onError={handleRetry}
             onEnded={handleVideoEnd}
