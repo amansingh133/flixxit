@@ -18,11 +18,18 @@ import {
   checkUserVote,
 } from "../../controllers/content/rating.js";
 
+import {
+  serveAllContentFromCache,
+  serverOneContentFromCache,
+  serveSuggestions,
+} from "../../controllers/content/cache.js";
+
 const router = express.Router();
 
 router.get(
   "/suggestions",
   passport.authenticate("jwt", { session: false }),
+  serveSuggestions(),
   getSuggestions
 );
 
@@ -57,6 +64,7 @@ router.post(
 router.get(
   "/:id",
   passport.authenticate("jwt", { session: false }),
+  serverOneContentFromCache(),
   checkUserVote,
   getOneContent
 );
@@ -64,6 +72,7 @@ router.get(
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
+  serveAllContentFromCache(),
   getAllContent
 );
 

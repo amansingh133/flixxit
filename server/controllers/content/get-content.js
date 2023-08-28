@@ -1,3 +1,4 @@
+import { cacheContent } from "./cache.js";
 import Content from "../../models/content.js";
 
 export const getOneContent = async (req, res) => {
@@ -13,7 +14,10 @@ export const getOneContent = async (req, res) => {
     if (!contentDetails) {
       return res.status(404).json({ error: "Title not found" });
     }
-    return res.status(200).json({ contentDetails, voteStatus });
+
+    cacheContent(`content/:${id}`, { contentDetails, voteStatus });
+
+    res.json({ contentDetails, voteStatus });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
@@ -52,8 +56,11 @@ export const getAllContent = async (req, res) => {
       };
     });
 
+    cacheContent("all_content", contentWithVotes);
+
     res.json(contentWithVotes);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Server error" });
   }
 };

@@ -3,11 +3,14 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useFormContext from "../hooks/useFormContext";
 import useLogout from "../../../hooks/useLogout";
 import PasswordModal from "../../../components/modal/components/PasswordModal";
+import RedirectModal from "../../../components/modal/components/RedirectModal";
 
 const InputNewPassword = () => {
   const axiosPrivate = useAxiosPrivate();
-  const { setMessage } = useFormContext();
+  const { message, setMessage } = useFormContext();
   const logout = useLogout();
+
+  const [openModal, setOpenModal] = useState(false);
 
   const [formData, setFormData] = useState({
     newPassword: "",
@@ -35,8 +38,14 @@ const InputNewPassword = () => {
       const response = await axiosPrivate.post("/user/reset-password", {
         newPassword: formData.newPassword,
       });
-      setMessage(response.data.message);
-      setFormData({ newPassword: "", confirmNewPassword: "" });
+
+      if (response.status === 200) {
+        setMessage(response.data.message);
+        setFormData({ newPassword: "", confirmNewPassword: "" });
+        setErr([]);
+        setOpenModal(true);
+      }
+
       await logout();
     } catch (error) {
       setErr(error.response.data.error || "An error occurred.");
@@ -74,6 +83,14 @@ const InputNewPassword = () => {
           Submit
         </button>
       </form>
+      {openModal && (
+        <RedirectModal
+          message={`${message}. Please Login again here!`}
+          linkTo="/login"
+          linkText="Login"
+          openModal={openModal}
+        />
+      )}
     </>
   );
 };

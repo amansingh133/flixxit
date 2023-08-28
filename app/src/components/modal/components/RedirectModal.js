@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ModalContainer from "./ModalContainer";
 import { Link } from "react-router-dom";
 import "../styles/RedirectModal.css";
@@ -20,6 +21,14 @@ const RedirectModal = ({
       </div>
     </ModalContainer>
   );
+};
+
+RedirectModal.propTypes = {
+  message: PropTypes.string,
+  linkTo: PropTypes.string,
+  linkText: PropTypes.string,
+  openModal: PropTypes.bool,
+  closeModal: PropTypes.func,
 };
 
 export default RedirectModal;

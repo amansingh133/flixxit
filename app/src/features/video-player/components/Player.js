@@ -39,9 +39,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
   };
 
   const handleVideoEnd = async () => {
-    const res = await handleLogging(axiosPrivate, id);
-
-    console.log(res);
+    await handleLogging(axiosPrivate, id);
 
     if (autoPlay && onVideoEnd) {
       onVideoEnd(playerRef);

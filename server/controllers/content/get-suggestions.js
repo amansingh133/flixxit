@@ -1,7 +1,7 @@
 import Content from "../../models/content.js";
-import User from "../../models/user.js";
 import Preference from "../../models/preferences.js";
 import Consumption from "../../models/consumption.js";
+import { cacheContent } from "./cache.js";
 
 export const getSuggestions = async (req, res) => {
   const userId = req.user._id;
@@ -44,6 +44,8 @@ export const getSuggestions = async (req, res) => {
     if (suggestions.length === 0) {
       return res.status(200).json([]);
     }
+
+    cacheContent("suggestions", suggestions);
 
     return res.status(200).json(suggestions);
   } catch (error) {

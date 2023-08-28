@@ -16,22 +16,7 @@ export const refreshAccessToken = async (req, res) => {
     let user;
 
     try {
-      user = await User.findOne({ _id: decoded.sub })
-        .populate({
-          path: "consumption",
-          populate: {
-            path: "items.content",
-            select: "_id",
-          },
-        })
-        .populate("preferences")
-        .populate({
-          path: "watchlist",
-          populate: {
-            path: "items.content",
-            select: "_id",
-          },
-        });
+      user = await User.findOne({ _id: decoded.sub });
     } catch (err) {
       return res.status(403).json({ message: "Error finding user" });
     }

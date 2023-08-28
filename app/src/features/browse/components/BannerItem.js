@@ -21,8 +21,6 @@ const BannerItem = ({ item }) => {
     return <Message message="Loading..." />;
   }
 
-  console.log(item);
-
   return (
     <header
       className="banner"

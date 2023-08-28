@@ -3,8 +3,10 @@ import { FiArrowUpCircle } from "react-icons/fi";
 import "./ScrollToTop.css";
 
 const ScrollToTop = () => {
+  // State to control the visibility of the scroll-to-top button
   const [isVisible, setIsVisible] = useState(false);
 
+  // Function to toggle the visibility based on scroll position
   const toggleVisibility = () => {
     if (window.scrollY > 100) {
       setIsVisible(true);
@@ -13,6 +15,7 @@ const ScrollToTop = () => {
     }
   };
 
+  // Function to scroll to the top of the page
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -20,6 +23,7 @@ const ScrollToTop = () => {
     });
   };
 
+  // Adding and removing event listener when component mounts and unmounts
   useEffect(() => {
     window.addEventListener("scroll", toggleVisibility);
 
