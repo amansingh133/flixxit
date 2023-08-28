@@ -44,6 +44,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
     if (autoPlay && onVideoEnd) {
       onVideoEnd();
       playerRef.current.load();
+      playerRef.current.play();
     }
   };
 
@@ -149,7 +150,6 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
             onLoadedData={() => {
               playerRef.current.currentTime = prevTime;
               setPrevTime(0);
-              playerRef.current.play();
             }}
             onError={handleRetry}
             onEnded={handleVideoEnd}
