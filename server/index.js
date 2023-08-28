@@ -38,17 +38,35 @@ app.use(
         "https://vimeo.com",
         "https://www.googleapis.com",
         "https://rr2---sn-qxaelner.c.drive.google.com",
+        "https://flixxit-40rb.onrender.com",
       ],
       imgSrc: [
         "'self'",
         "https://drive.google.com",
         "https://image.tmdb.org",
         "https://lh3.googleusercontent.com",
+        "https://flixxit-40rb.onrender.com",
       ],
-      mediaSrc: ["'self'", "https://drive.google.com"],
-      styleSrcElem: ["'self'", "https://fonts.googleapis.com"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      frameSrc: ["self", "https://drive.google.com"],
+      mediaSrc: [
+        "'self'",
+        "https://drive.google.com",
+        "https://flixxit-40rb.onrender.com",
+      ],
+      styleSrcElem: [
+        "'self'",
+        "https://fonts.googleapis.com",
+        "https://flixxit-40rb.onrender.com",
+      ],
+      fontSrc: [
+        "'self'",
+        "https://fonts.gstatic.com",
+        "https://flixxit-40rb.onrender.com",
+      ],
+      frameSrc: [
+        "self",
+        "https://drive.google.com",
+        "https://flixxit-40rb.onrender.com",
+      ],
     },
   })
 );

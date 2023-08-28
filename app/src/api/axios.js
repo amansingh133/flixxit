@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "https://flixxit-40rb.onrender.com/api";
 
 // Create an instance of Axios with common configurations.
 export default axios.create({
