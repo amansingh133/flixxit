@@ -1,6 +1,5 @@
 import React from "react";
 import "./ErrorPage.css";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 const ErrorPage = ({ errorCode = 404, errorMessage = "Page not found" }) => {
@@ -19,11 +18,6 @@ const ErrorPage = ({ errorCode = 404, errorMessage = "Page not found" }) => {
       </div>
     </div>
   );
-};
-
-ErrorPage.propTypes = {
-  errorCode: PropTypes.number,
-  errorMessage: PropTypes.string,
 };
 
 export default ErrorPage;

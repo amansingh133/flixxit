@@ -136,6 +136,7 @@ const Player = ({ url1080, url720, title, onVideoEnd, id }) => {
           id={`${isFullScreen ? "myPlayerWrapper" : ""}`}
         >
           <video
+            preload="auto"
             onClick={togglePlayPause}
             id={`${isFullScreen ? "myPlayer" : ""}`}
             className="player"

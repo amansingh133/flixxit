@@ -1,6 +1,5 @@
 import React from "react";
 import Modal from "react-modal";
-import PropTypes from "prop-types";
 import "../styles/ModalContainer.css";
 
 const ModalContainer = ({ isOpen, onRequestClose = () => {}, children }) => {
@@ -17,12 +16,6 @@ const ModalContainer = ({ isOpen, onRequestClose = () => {}, children }) => {
       {children}
     </Modal>
   );
-};
-
-ModalContainer.propTypes = {
-  isOpen: PropTypes.bool,
-  onRequestClose: PropTypes.func,
-  children: PropTypes.node,
 };
 
 export default ModalContainer;

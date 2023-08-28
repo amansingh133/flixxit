@@ -33,9 +33,24 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      connectSrc: ["'self'", "https://flixxit-8k2n.onrender.com"],
-      imgSrc: ["'self'", "https://drive.google.com"],
+      connectSrc: [
+        "'self'",
+        "https://api.themoviedb.org",
+        "https://drive.google.com",
+        "https://vimeo.com",
+        "https://www.googleapis.com",
+        "https://rr2---sn-qxaelner.c.drive.google.com",
+      ],
+      imgSrc: [
+        "'self'",
+        "https://drive.google.com",
+        "https://image.tmdb.org",
+        "https://lh3.googleusercontent.com",
+      ],
       mediaSrc: ["'self'", "https://drive.google.com"],
+      styleSrcElem: ["'self'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      frameSrc: ["self", "https://drive.google.com"],
     },
   })
 );

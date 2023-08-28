@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./Switch.css";
 
 const Switch = ({ label, checked, handler }) => {
@@ -25,12 +24,6 @@ const Switch = ({ label, checked, handler }) => {
       </div>
     </div>
   );
-};
-
-Switch.propTypes = {
-  label: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
-  handler: PropTypes.func.isRequired,
 };
 
 export default Switch;

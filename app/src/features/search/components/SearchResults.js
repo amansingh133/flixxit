@@ -10,8 +10,6 @@ const SearchResults = () => {
     return null;
   }
 
-  console.log(searchResults);
-
   return (
     <div className="search-results-container">
       {error ? (
