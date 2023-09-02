@@ -3,11 +3,14 @@ import PreferenceFrom from "./PreferenceFrom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { callApi } from "../../../api/callApi";
 import RedirectModal from "../../../components/modal/components/RedirectModal";
+import { useNavigate } from "react-router-dom";
 
 const Preference = () => {
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const [openModal, setOpenModal] = useState(false);
+  const [err, setErr] = useState(null);
 
   const [selectedCheckboxes, setSelectedCheckboxes] = useState({
     genres: [],
@@ -47,16 +50,20 @@ const Preference = () => {
 
       setMessage(response.data.message);
       setOpenModal(true);
-
+      setErr(null);
       setSelectedCheckboxes({
         genres: [],
         categories: [],
         languages: [],
       });
     } catch (error) {
-      console.error("An error occurred:", error);
+      setErr(error);
     }
   };
+
+  if (err) {
+    navigate("/", { replace: true });
+  }
 
   return (
     <>

@@ -51,6 +51,7 @@ app.use(
         "'self'",
         "https://drive.google.com",
         "https://flixxit-40rb.onrender.com",
+        "https://storage.googleapis.com",
       ],
       styleSrcElem: [
         "'self'",

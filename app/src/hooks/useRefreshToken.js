@@ -14,7 +14,7 @@ const useRefreshToken = () => {
       dispatch(setUserAndToken({ user, accessToken }));
       return accessToken;
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 

@@ -12,7 +12,6 @@ export const handleVotes = async (axios, contentId, dispatch, type) => {
       response.data.voteStatus
     );
   } catch (error) {
-    console.log(error);
     dispatch(setError("Something went wrong! Please try again later"));
   }
 };

@@ -15,19 +15,22 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Message from "../../../pages/Message/Message";
+import ErrorPage from "../../../pages/error/ErrorPage";
 
 const Banner = () => {
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
     callApi(axiosPrivate, "/content", "get")
       .then((res) => {
         dispatch(storeContent(res.data));
+        setErr(null);
       })
-      .catch((error) => console.error("Error fetching data:", error))
+      .catch((error) => setErr(error))
       .finally(() => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -36,6 +39,12 @@ const Banner = () => {
 
   if (isLoading || content.length === 0) {
     return <Message message="Loading..." />;
+  }
+
+  if (err) {
+    return (
+      <ErrorPage errorMessage="Something went wrong! Please try again later!" />
+    );
   }
 
   return (

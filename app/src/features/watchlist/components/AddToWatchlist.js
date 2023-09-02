@@ -4,6 +4,7 @@ import { callApi } from "../../../api/callApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addContentToWatchlist } from "../slices/watchlist-slice";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import ErrorPage from "../../../pages/error/ErrorPage";
 
 const AddToWatchlist = ({ content, classname }) => {
   const dispatch = useDispatch();
@@ -12,13 +13,15 @@ const AddToWatchlist = ({ content, classname }) => {
   const navigate = useNavigate();
   const [present, setPresent] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
     callApi(axiosPrivate, `watchlist/${userId}/${content._id}`, "get")
       .then((res) => {
         setPresent(res.data.present);
+        setErr(null);
       })
-      .catch((error) => console.error("Error checking watchlist:", error));
+      .catch((error) => setErr(error));
   }, [axiosPrivate, content._id, userId]);
 
   const addToWatchList = async () => {
@@ -35,10 +38,15 @@ const AddToWatchlist = ({ content, classname }) => {
       }
 
       dispatch(addContentToWatchlist(content));
+      setErr(null);
     } catch (error) {
-      console.error("Error adding to watchlist:", error);
+      setErr(error);
     }
   };
+
+  if (err) {
+    <ErrorPage errorMessage="Something went wrong! Please try again later." />;
+  }
 
   return (
     <>

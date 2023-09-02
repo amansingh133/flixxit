@@ -11,9 +11,7 @@ const useLogout = () => {
 
     try {
       await axiosPrivate.get("/user/logout");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return logout;

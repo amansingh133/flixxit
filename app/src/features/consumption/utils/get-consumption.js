@@ -12,7 +12,6 @@ export const getConsumption = async (axios, dispatch) => {
     }
     dispatch(setError(null));
   } catch (error) {
-    console.log(error);
     setError("Failed to fetch consumption history.");
   }
 };

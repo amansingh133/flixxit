@@ -6,6 +6,7 @@ import { callApi } from "../../../api/callApi";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import RedirectModal from "../../../components/modal/components/RedirectModal";
 import { capitalizeFirstLetter } from "../utils/util-functions";
+import ErrorPage from "../../../pages/error/ErrorPage";
 
 const Plans = () => {
   const plans = [{ monthly: 99 }, { yearly: 999 }];
@@ -14,6 +15,8 @@ const Plans = () => {
 
   const location = useLocation();
   const planDetail = location.state?.planDetails || false;
+
+  const [err, setErr] = useState(null);
 
   const handleSubscription = async (key) => {
     try {
@@ -27,11 +30,16 @@ const Plans = () => {
       );
       if (res.status === 200) {
         setOpenModal(true);
+        setErr(null);
       }
     } catch (error) {
-      console.error(error);
+      setErr(error);
     }
   };
+
+  if (err) {
+    <ErrorPage errorMessage="Something went wrong! Please try again later." />;
+  }
 
   return (
     <div className="plans-container">
