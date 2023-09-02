@@ -4,17 +4,17 @@
 
 ## Features
 
-1. **User Accounts** : Allow visitors to sign up and login using their e-mail IDs and password.
-2. **Password Change** : Registered users change their password either from their account or login page by verifying the OTP sent to their registered email address. Users can generate 1 OTP per minute.
+1. **User Accounts** : Visitors can sign up and login using their e-mail IDs and password.
+2. **Password Change** : Registered users can change password either from their account or login page by verifying the OTP sent to their registered email address. Users can generate 1 OTP per minute.
 3. **Consumption History** : Shows users the content they have consumed.
-4. **Preferences** : Users need to update preferences when they login for the first time. Users can also update their preferences from the profile section.
+4. **Preferences** : Users need to update preferences when they login for the first time. Users can also update their preferences from the profile section later.
 5. **Dashboard** :  Users can browse titles using horizontally scrollable carousels and users can play the content or add the item to watchlist from here.
 6. **Suggestions** : Users are suggested content using sliding carousels based on consumption history and preferences.
 7. **Title View** : Clicking on a title leads a page where synopsis, rating, and other details of a chosen title may be seen.
 8. **Search** : Users can search various types of content like web series, movies, short films, documentaries etc. 
-9. **Watchlist** : Users can add content that they wish to watch later. Can also play the content using the “Autoplay” feature.
+9. **Watchlist** : Users can add content that they wish to watch later and mark the content as watched or delete the cotent from watchlist. Can also play the content using the “Autoplay” feature. (Works based on whether they have switched on the "Autoplay" or not)
 10. **Rating** : Users can either upvote or downvote a content and choose to remove their existing vote.
-11. **Video player** : Users can play the selected content on the platform with “Skip Intro” feature. 
+11. **Video player** : Users can play the selected content on the platform with “Skip Intro” feature.
 12. **Quality** : Users have option to choose quality between 1080p and 720p. The default quality is set to "AUTO" which selects the quality based on users network strength.
 13. **Payment and subscription** : Users can subscribe for monthly or yearly plans and view their plan details and can also choose to cancel their plan at anytime.
 
