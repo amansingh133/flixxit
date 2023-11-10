@@ -46,6 +46,7 @@ app.use(
         "https://image.tmdb.org",
         "https://lh3.googleusercontent.com",
         "https://flixxit-40rb.onrender.com",
+        "https://storage.googleapis.com",
       ],
       mediaSrc: [
         "'self'",
