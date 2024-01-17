@@ -39,6 +39,7 @@ app.use(
         "https://www.googleapis.com",
         "https://rr2---sn-qxaelner.c.drive.google.com",
         "https://flixxit-40rb.onrender.com",
+        "s3://flixxit/Videos",
       ],
       imgSrc: [
         "'self'",
@@ -47,12 +48,14 @@ app.use(
         "https://lh3.googleusercontent.com",
         "https://flixxit-40rb.onrender.com",
         "https://storage.googleapis.com",
+        "s3://flixxit/Videos",
       ],
       mediaSrc: [
         "'self'",
         "https://drive.google.com",
         "https://flixxit-40rb.onrender.com",
         "https://storage.googleapis.com",
+        "s3://flixxit/Videos",
       ],
       styleSrcElem: [
         "'self'",
